@@ -9,10 +9,16 @@ export const initialState = {
   error: '',
 };
 
-export const addDoctor = createAsyncThunk('doctor/addDoctor', async (doctorData) => {
-  const response = await axios.post('http://localhost:3000/api/doctors', { ...doctorData, price_hour: doctorData.price });
-  return response.data;
-});
+export const addDoctor = createAsyncThunk(
+  'doctor/addDoctor',
+  async (doctorData) => {
+    const response = await axios.post('http://localhost:3000/api/doctors', {
+      ...doctorData,
+      price_hour: doctorData.price,
+    });
+    return response.data;
+  },
+);
 
 export const getDoctors = createAsyncThunk('doctors/getDoctors', async () => {
   try {
@@ -23,23 +29,31 @@ export const getDoctors = createAsyncThunk('doctors/getDoctors', async () => {
   }
 });
 
-export const getDoctor = createAsyncThunk('doctors/getDoctor', async (doctorId) => {
-  try {
-    const response = await axios.get(`http://localhost:3000/api/doctors/${doctorId}`);
-    return response.data;
-  } catch (error) {
-    throw error.response.data.error;
-  }
-});
+export const getDoctor = createAsyncThunk(
+  'doctors/getDoctor',
+  async (doctorId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/doctors/${doctorId}`,
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response.data.error;
+    }
+  },
+);
 
-export const deleteDoctor = createAsyncThunk('doctor/deleteDoctor', async (doctorId) => {
-  try {
-    await axios.delete(`http://localhost:3000/api/doctors/${doctorId}`);
-    return doctorId;
-  } catch (error) {
-    throw error.response.data.error;
-  }
-});
+export const deleteDoctor = createAsyncThunk(
+  'doctor/deleteDoctor',
+  async (doctorId) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/doctors/${doctorId}`);
+      return doctorId;
+    } catch (error) {
+      throw error.response.data.error;
+    }
+  },
+);
 
 export const doctorsSlice = createSlice({
   name: 'doctors',
@@ -68,7 +82,9 @@ export const doctorsSlice = createSlice({
 
       .addCase(deleteDoctor.pending, (state) => ({ ...state, isLoading: true }))
       .addCase(deleteDoctor.fulfilled, (state, action) => {
-        const updatedDoctors = state.doctors.filter((doctor) => doctor.id !== action.payload);
+        const updatedDoctors = state.doctors.filter(
+          (doctor) => doctor.id !== action.payload,
+        );
         return {
           ...state,
           isLoading: false,
