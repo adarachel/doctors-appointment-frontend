@@ -7,7 +7,6 @@ export const createReserve = createAsyncThunk(
   async (payload) => {
     const ree = {
       appointment_date: payload.date,
-      appointment_time: payload.time,
       doctor_id: payload.doctor,
       username: payload.username,
       city: payload.city,
@@ -23,6 +22,45 @@ export const createReserve = createAsyncThunk(
   }
 );
 
-//get reserve and delete reserve
+export const getReserve = createAsyncThunk("reserve/getReserve", async () => {
+  const response = await fetch(`${API_BASE}/reservations`);
+  const data = await response.json();
+  return data;
+});
+
+export const deleteReserve = createAsyncThunk(
+  "reserve/deleteReserve",
+  async (payload) => {
+    const response = await fetch(`${API_BASE}/reservations/${payload}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const data = await response.json();
+    return data;
+  }
+);
+
+const initialState = {
+  reservations: [],
+  regsuccess: null,
+};
+
+const ReservationSlice = createSlice({
+  name: "reserve",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(createReserve.fulfilled, (state, action) => {
+      state.regsuccess = action.payload;
+      if (action.payload.token) {
+        localStorage.setItem("success", JSON.stringify(action.payload));
+      }
+    });
+    builder.addCase(getReserve.fulfilled, (state, action) => {
+      state.reservations = action.payload;
+    });
+  },
+});
 
 export default ReservationSlice.reducer;
