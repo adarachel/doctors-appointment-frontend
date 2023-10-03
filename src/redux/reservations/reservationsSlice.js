@@ -7,14 +7,19 @@ export const initialState = {
   error: '',
 };
 
-export const getReservations = createAsyncThunk('reservations/getReservations', async () => {
-  try {
-    const response = await axios.get('http://localhost:3000/api/reservations');
-    return response.data;
-  } catch (error) {
-    throw error.response.data.error;
-  }
-});
+export const getReservations = createAsyncThunk(
+  'reservations/getReservations',
+  async () => {
+    try {
+      const response = await axios.get(
+        'http://localhost:3000/api/reservations',
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response.data.error;
+    }
+  },
+);
 
 export const reservationsSlice = createSlice({
   name: 'DateTime',
@@ -22,7 +27,10 @@ export const reservationsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getReservations.pending, (state) => ({ ...state, isLoading: true }))
+      .addCase(getReservations.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
       .addCase(getReservations.fulfilled, (state, action) => ({
         ...state,
         isLoading: false,
