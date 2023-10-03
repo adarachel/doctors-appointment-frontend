@@ -1,5 +1,5 @@
 import React from 'react';
-import DoctorForm from './addDoctorForm/DoctorForm'
+import DoctorForm from './addDoctorForm/DoctorForm';
 import './addDoctorForm/doctor.css';
 
 const AddDcotor = () => (
