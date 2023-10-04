@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDoctor, getDoctors } from '../redux/doctors/doctorsSlice';
-import './componentsCss/deleteDoctor.css';
+import './componentsCSS/deleteDoctor.css';
 
 const DeleteDoctor = () => {
   const { doctors, isLoading, error } = useSelector((store) => store.doctors);
