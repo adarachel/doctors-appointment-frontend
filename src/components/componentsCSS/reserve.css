@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.container-2 {
+  padding: 20px;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+  margin: 1.1rem;
+}
+
+.container-2 form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 50%;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+  background-color: #70be0d;
+  padding: 1rem;
+  color: white;
+  border-radius: 1rem;
+}
+
+.container-2 form h2 {
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.container-2 form input {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  outline: none;
+  background-color: #efeaea;
+}
+
+.select-container {
+  width: 100%;
+}
+
+.select-option {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  outline: none;
+  border-radius: 5px;
+  background-color: #efeaea;
+  border: none;
+}
+
+.r-btn {
+  background-color: #70be0d;
+  text-decoration: none;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  text-align: center;
+  width: 100%;
+}
+
+.r-btn:hover {
+  background-color: #5ea008;
+}
+
+.rebtn {
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 10px;
+  width: 100%;
+}
+
+/* for desktop */
+
+@media only screen and (max-width: 768px) {
+  .container-2 form {
+    width: 100%;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+}
