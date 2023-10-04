@@ -1,6 +1,6 @@
 import React from 'react';
-import DoctorForm from './addDoctorForm/DoctorForm';
-import './addDoctorForm/doctor.css';
+import DoctorForm from './AddDoctorForm/DoctorForm';
+import './AddDoctorForm/doctor.css';
 
 const AddDcotor = () => (
   <div className="add-doctor-container">
