@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createReserve } from '../redux/reservations/ReservationSlice';
+import { createReserve } from '../redux/reservations/reservationSlice';
 import { getDoctors } from '../redux/doctors/doctorsSlice';
 import './componentsCss/reserve.css';
 
