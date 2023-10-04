@@ -1,12 +1,17 @@
 <a name="readme-top"></a>
 
+<div align="center">
+  <h1>📖 Doctors-Appoinment-Frontend</h>
+</div>
+
 <!-- TABLE OF CONTENTS -->
 
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 \[Doctors Appointment Frontend\] ](#-doctors-appointment-frontend-)
+- [📖 Doctors Appointment Frontend ](#-doctors-appointment-frontend-)
   - [🚀 Backend App ](#-backend-app-)
+  - [🚀 Kanban Board ](#-kanban-board-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -24,12 +29,15 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Doctors Appointment Frontend] <a name="about-project"></a>
+# 📖 Doctors Appointment Frontend <a name="about-project"></a>
 
-**[Doctors Appointment Frontend]** is a web application that allows users to book appointments with doctors.
+**[Doctors Appointment Frontend]** is the frontend part of a web application project that allows users to book appointments with doctors.
 
 ## 🚀 Backend App <a name="back-end"></a>
-- [Click here to navigate to the Backend ](https://github.com/Enning94/Doctors_Appointment_Backend)
+- [Click here to navigate to the Backend](https://github.com/Enning94/Doctors_Appointment_Backend)
+
+## 🚀 Kanban Board <a name="kanban-board"></a>
+- [Kanban Board ](https://github.com/Enning94/Doctors_Appointment_Backend/projects/1)
 
 
 ## 🛠 Built With <a name="built-with"></a>
@@ -72,7 +80,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://google.com)
+- [Live Demo](https://google.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,30 +136,30 @@ Example command:
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Ada Rachel**
+👤 **Ankit [member 1]**
+
+- GitHub: [@ankitt26](https://github.com/ankitt26)
+- Twitter: [@ankit26k](https://twitter.com/ankit26k)
+- LinkedIn: [ankit26k](https://www.linkedin.com/in/ankit26k/)
+
+👤 **Ada Rachel [member 2]**
 
 - GitHub: [@githubhandle](https://github.com/adarachel)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/adarachel/)
 
-👤 **Vahe Stepanyan**
-
-- GitHub: [@githubhandle](https://github.com/VaheStepanyan100)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/vahestepanyan/)
-
-👤 **Deborah A. Fashoro**
+👤 **Deborah A. Fashoro [member 3]**
 
 - GitHub: [@githubhandle](https://github.com/DebyGrey)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/deborah-fashoro)
 
-👤 **Festus Enning**
+👤 **Festus Enning [member 4]**
 
 - GitHub: [@githubhandle](https://github.com/Enning94)
 
-👤 **
-Ankit Kushwaha**
+👤 **Vahe Stepanyan [member 5]**
 
-- GitHub: [@githubhandle](https://github.com/ankitt26)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ankit26k/)
+- GitHub: [@githubhandle](https://github.com/VaheStepanyan100)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/vahestepanyan/)
 
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
