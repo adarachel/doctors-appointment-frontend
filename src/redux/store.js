@@ -9,6 +9,8 @@ const store = configureStore({
     user: userReducer,
     reservations: reservationReducer,
   },
+
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStorageMiddleware),
 });
 
 export default store;
