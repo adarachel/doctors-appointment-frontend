@@ -50,7 +50,6 @@ const Reservation = () => {
       navigate('/myreservations'); // Redirect to the reservation page after successful reservation
     } catch (error) {
       alert('Error occurred while making a reservation.');
-      console.error(error);
     }
   };
 
