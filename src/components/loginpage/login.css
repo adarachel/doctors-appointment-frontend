@@ -1,0 +1,85 @@
+body {
+    padding: 0;
+}
+
+.login-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page h2 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.login-container {
+    background-color: white;
+    height: 60%;
+    width: 45%;
+    border-radius: 15px;
+    border: 1px solid #08ad08;
+}
+
+.login-container form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login-container input {
+    width: 60%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 2px solid #08ad08;
+}
+
+.login-container button {
+    background-color: rgb(8, 173, 8);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 30%;
+}
+
+.login-container button:hover {
+    background-color: rgb(4, 105, 4);
+}
+
+.login-container p {
+    text-align: center;
+}
+
+.login-container p a:hover {
+    color: blue;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.error-message {
+    color: red;
+}
+
+@media (max-width: 500px) {
+    .login-container {
+        background-color: white;
+        height: 70%;
+        width: 95%;
+        border-radius: 15px;
+        border: 1px solid #08ad08;
+    }
+}
