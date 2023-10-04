@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDoctor } from '../redux/doctors/doctorsSlice';
-import './componentsCss/details.css';
+import './componentsCSS/details.css';
 
 const DoctorDetails = () => {
   const dispatch = useDispatch();
