@@ -1,0 +1,121 @@
+.delete-doctor {
+  width: 100%;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  overflow-y: auto;
+  column-gap: 2rem;
+  margin-top: 2rem;
+}
+
+.deldoc-info {
+  width: 320px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.deldoc-info:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Updated values */
+  transition: box-shadow 0.5s ease;
+}
+
+.deldoc-info .photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.deldoc-name {
+  margin: 0;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.flex {
+  display: flex;
+}
+
+#root {
+  display: flex;
+}
+
+@keyframes load {
+  0% {
+    border-right-color: rgb(27, 194, 12);
+  }
+
+  50% {
+    border-right-color: rgb(197, 90, 23);
+  }
+
+  100% {
+    transform: rotate(360deg);
+    border-right-color: rgb(221, 214, 18);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .delete-doctor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .deldoc-info {
+    width: 500px;
+    height: 200px;
+  }
+
+  .deldoc-info .photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .delete-btn {
+    padding: 8px 15px;
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .deldoc-info {
+    width: 340px;
+    height: 150px;
+  }
+
+  .deldoc-name {
+    font-size: 1.2rem;
+  }
+
+  .deldoc-info .photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .delete-btn {
+    padding: 6px 10px;
+  }
+}
