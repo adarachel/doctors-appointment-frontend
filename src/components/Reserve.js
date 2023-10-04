@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { createReserve } from "../redux/reservations/ReservationSlice";
-import { getDoctors } from "../redux/doctors/doctorsSlice";
-import "./componentsCss/reserve.css";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createReserve } from '../redux/reservations/ReservationSlice';
+import { getDoctors } from '../redux/doctors/doctorsSlice';
+import './componentsCss/reserve.css';
 
 const Reservation = () => {
   const doctors = useSelector((state) => state.doctors.doctors);
-  const user = localStorage.getItem("username");
+  const user = localStorage.getItem('username');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,10 +18,10 @@ const Reservation = () => {
 
   const [reserve, setReserve] = useState({
     username: user?.user || null,
-    date: "",
-    time: "",
-    doctor: "",
-    city: "",
+    date: '',
+    time: '',
+    doctor: '',
+    city: '',
   });
 
   const handleInputChange = (e) => {
@@ -34,20 +34,22 @@ const Reservation = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const { date, time, doctor, city } = reserve;
+    const {
+      date, time, doctor, city,
+    } = reserve;
 
     if (!date || !time || !doctor || !city) {
-      alert("Please fill in all the required fields.");
+      alert('Please fill in all the required fields.');
       return;
     }
 
     try {
       // Dispatch the createReserve action to make the reservation request
       await dispatch(createReserve({ ...reserve, username: user }));
-      alert("Reservation created successfully!");
-      navigate("/myreservations"); // Redirect to the reservation page after successful reservation
+      alert('Reservation created successfully!');
+      navigate('/myreservations'); // Redirect to the reservation page after successful reservation
     } catch (error) {
-      alert("Error occurred while making a reservation.");
+      alert('Error occurred while making a reservation.');
       console.error(error);
     }
   };
