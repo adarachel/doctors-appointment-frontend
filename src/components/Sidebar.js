@@ -6,6 +6,7 @@ import {
     FaBars, FaTimes,
 } from 'react-icons/fa';
 import { TiSocialGooglePlus } from 'react-icons/ti';
+import { logout } from '../redux/users/userSlice';
 import logo from './assets/logo.png';
 import './sidebar.css';
 
@@ -15,6 +16,12 @@ const Sidebar = () => {
     const navRef = useRef();
     const showNavbar = () => {
         navRef.current.classList.toggle('responsive');
+    };
+
+    const handleLogout = () => {
+        dispatch(logout());
+        localStorage.removeItem('username');
+        window.location.href = '/home';
     };
 
     return (
@@ -89,7 +96,9 @@ const Sidebar = () => {
                                         trigger="hover"
                                         colors="primary:#16c72e,secondary:#242424"
                                         style={{ width: '60px', height: '60px' }}
+                                        onClick={handleLogout}
                                     />
+                                    logout
                                 </li>
                             </ul>
                         </div>
