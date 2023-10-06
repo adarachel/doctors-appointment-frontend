@@ -8,15 +8,27 @@ import './login.css';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [loginData, setLoginData] = useState({ login: '', password: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Create the data object with the user inputs
+    const data = {
+      user: {
+        login: loginData.login,
+        password: loginData.password,
+        admin_key: loginData.admin_key,
+      },
+    };
+
     try {
-      await dispatch(loginUser(username));
+      await dispatch(loginUser(data));
+      console.log('Before navigation');
       navigate('/home');
+      console.log('After navigation');
     } catch (error) {
-      // eslint-disable-next-line no-console
+      // Handle login error here
     }
   };
 
@@ -33,7 +45,24 @@ const Login = () => {
             state="morph"
             style={{ width: '180px', height: '180px' }}
           />
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+          <input
+            type="text"
+            value={loginData.login}
+            onChange={(e) => setLoginData({ ...loginData, login: e.target.value })}
+            placeholder="Username or Email"
+          />
+          <input
+            type="password"
+            value={loginData.password}
+            onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+            placeholder="Password"
+          />
+          <input
+            type="text"
+            value={loginData.admin_key}
+            onChange={(e) => setLoginData({ ...loginData, admin_key: e.target.value })}
+            placeholder="Admin Key"
+          />
           <button type="submit">Log In</button>
         </form>
         <p>
