@@ -8,27 +8,28 @@ import './login.css';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({ login: '', password: '' });
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [adminKey, setAdminKey] = useState(''); // Add admin_key state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Create the data object with the user inputs
-    const data = {
-      user: {
-        login: loginData.login,
-        password: loginData.password,
-        admin_key: loginData.admin_key,
-      },
-    };
-
     try {
-      await dispatch(loginUser(data));
-      console.log('Before navigation');
+      const userObj = {
+        login,
+        password,
+      };
+
+      if (adminKey) {
+        userObj.adminKey = adminKey;
+      }
+
+      await dispatch(loginUser({ user: userObj }));
       navigate('/home');
       console.log('After navigation');
     } catch (error) {
-      // Handle login error here
+      // Handle login failure (you can display an error message)
+      console.log(error);
     }
   };
 
@@ -47,20 +48,22 @@ const Login = () => {
           />
           <input
             type="text"
-            value={loginData.login}
-            onChange={(e) => setLoginData({ ...loginData, login: e.target.value })}
-            placeholder="Username or Email"
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
+            placeholder="Username or email"
+            required
           />
           <input
             type="password"
-            value={loginData.password}
-            onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            required
           />
           <input
             type="text"
-            value={loginData.admin_key}
-            onChange={(e) => setLoginData({ ...loginData, admin_key: e.target.value })}
+            value={adminKey}
+            onChange={(e) => setAdminKey(e.target.value)}
             placeholder="Admin Key"
           />
           <button type="submit">Log In</button>

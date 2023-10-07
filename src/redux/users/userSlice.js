@@ -2,32 +2,33 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
-export const signupUser = createAsyncThunk('user/signupUser', async (user, { rejectWithValue }) => {
+export const signupUser = createAsyncThunk('user/signupUser', async (user) => {
   try {
-    const response = await axios.post('http://localhost:3000/users', user);
+    console.log(user);
+    const response = await axios.post(
+      'https://doctors-appointment-0mkx.onrender.com/signup',
+      user,
+    );
     return response.data;
   } catch (error) {
-    return rejectWithValue(error.response.data.error);
+    throw new Error(error.message); // Throw the original error message
   }
 });
+export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
+  try {
+    const response = await axios.post(
+      'https://doctors-appointment-0mkx.onrender.com/login',
+      user,
+    );
 
-// export const setToken = (token) => (dispatch) => {
-//   // Dispatch the action to set the token in the Redux state
-//   dispatch(userSlice.actions.setToken(token));
-// };
-
-export const loginUser = createAsyncThunk('user/loginUser', async (data) => {
-  const response = await axios.post('http://localhost:3000/login', data);
-  const authorizationHeader = response.headers.authorization;
-  const userData = response.data.status.data.user;
-
-  if (authorizationHeader) {
-    const token = authorizationHeader.split(' ')[1]; // Assuming it's a 'Bearer' token
-
+    const token = response.headers.authorization.split(' ')[1]; // Extract the token from the "Bearer" header
     console.log(token);
+    // localStorage.setItem("jwtToken", token); // Save the JWT token in local storage
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
   }
-  console.log(userData);
-  return response.data; // You can return any data sent from the server upon successful login.
 });
 
 const userSlice = createSlice({
@@ -52,6 +53,8 @@ const userSlice = createSlice({
     builder
       .addCase(signupUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
+        console.log('created');
+        console.log(action.payload.data);
         state.user = action.payload.data;
         state.error = action.payload.message;
       })
