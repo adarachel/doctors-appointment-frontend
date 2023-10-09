@@ -15,16 +15,12 @@ import Sidebar from './components/Sidebar';
 import Reserve from './components/Reserve';
 import DoctorDetails from './components/DoctorDetails';
 
-const App = () =>
-// const token = localStorage.getItem('token');
-// if (token) {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// }
-  (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
-  );
+const App = () => (
+  <BrowserRouter>
+    <AppContent />
+  </BrowserRouter>
+);
+
 const AppContent = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
@@ -40,9 +36,10 @@ const AppContent = () => {
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
         <Route path="home" element={<Private><Home /></Private>} />
-        <Route path="adddoctor" element={<Private><AddDoctor /></Private>} />
-        <Route path="delete" element={<Private><DeleteDoctor /></Private>} />
-        <Route path="/:doctorId" element={<Private><DoctorDetails /></Private>} />
+        <Route path="/add_doctor" element={<Private><AddDoctor /></Private>} />
+        <Route path="/delete" element={<Private><DeleteDoctor /></Private>} />
+        <Route path="/doctor/:doctorId" element={<Private><DoctorDetails /></Private>} />
+
         <Route path="reserveform" element={<Private><Reserve /></Private>} />
         <Route path="myreservations" element={<Private><Reservations /></Private>} />
       </Routes>

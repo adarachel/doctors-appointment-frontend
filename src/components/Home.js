@@ -50,7 +50,7 @@ const Home = () => {
         <div>
           {doctors.map((doctor) => (
             <div key={doctor.id} className="doctor-info">
-              <Link to={`/${doctor.id}`} className="link">
+              <Link to={`/doctor/${doctor.id}`} className="link">
                 <img className="photo" src={doctor.profile_pic} alt={doctor.name} />
                 <h2>{doctor.name}</h2>
                 <p>{doctor.specialization}</p>
@@ -81,13 +81,14 @@ const Home = () => {
         >
           {doctors.map((doctor) => (
             <SwiperSlide className="doctor-info" key={doctor.id}>
-              <Link to={`/${doctor.id}`} className="link">
-                <img className="photo" src={doctor.photo} alt={doctor.name} />
+              <Link to={`/doctor/${doctor.id}`} className="link">
+                <img className="photo" src={doctor.profile_pic} alt={doctor.name} />
                 <h2>{doctor.name}</h2>
-                <p>{doctor.about}</p>
+                <p>{doctor.specialization}</p>
+                <p>{doctor.bio}</p>
                 <p>
                   Buy one hour of time with only $
-                  {doctor.price_hour}
+                  {doctor.consultation_fee}
                 </p>
               </Link>
             </SwiperSlide>

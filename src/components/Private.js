@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useNavigate } from 'react-router-dom';
 
 const Private = ({ children }) => {
-  // const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const token = localStorage.getItem('jwtToken');
   const navigate = useNavigate();
 
@@ -16,6 +15,11 @@ const Private = ({ children }) => {
 
   // Render the wrapped components for authenticated users
   return <>{children}</>;
+};
+
+// Add prop validation for the children prop
+Private.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Private;

@@ -28,9 +28,9 @@ const axiosInstance = axios.create({
 export const addDoctor = createAsyncThunk(
   'doctor/addDoctor',
   async (doctorData) => {
-    const response = await axiosInstance.post('/doctors', {
-      doctor: { doctorData },
-    });
+    console.log(doctorData);
+    const response = await axiosInstance.post('/doctors',
+      doctorData);
     return response.data;
   },
 );

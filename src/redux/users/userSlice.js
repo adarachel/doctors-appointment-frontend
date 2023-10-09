@@ -40,6 +40,22 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
   }
 });
 
+export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
+  try {
+    // Send a delete request to your logout endpoint with the bearer token
+    await axios.delete('/logout', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwtToken')}`,
+      },
+    });
+    // Remove the token from local storage
+    localStorage.removeItem('jwtToken');
+    return true;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {

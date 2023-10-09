@@ -15,7 +15,7 @@ const Reservations = () => {
     (store) => store.reservations,
   );
   const dispatch = useDispatch();
-
+  console.log(reservations);
   useEffect(() => {
     dispatch(getReservations());
   }, [dispatch]);
@@ -65,7 +65,7 @@ const Reservations = () => {
               />
               <h2 className="text-center">
                 Dr.
-                {reservation.doctor_name}
+                {reservation.doctors}
               </h2>
             </div>
             <div className="reserve-details">
@@ -79,9 +79,9 @@ const Reservations = () => {
               </p>
               <p>
                 <strong>Time:&ensp;</strong>
-                {new Date(reservation.appointment_time).getHours()}
+                {new Date(reservation.appointment_duration).getHours()}
                 :
-                {new Date(reservation.appointment_time).getMinutes()}
+                {new Date(reservation.appointment_duration).getMinutes()}
               </p>
             </div>
           </SwiperSlide>

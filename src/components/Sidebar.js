@@ -6,7 +6,7 @@ import {
   FaBars, FaTimes,
 } from 'react-icons/fa';
 import { TiSocialGooglePlus } from 'react-icons/ti';
-import { logout } from '../redux/users/userSlice';
+import { logoutUser } from '../redux/users/userSlice';
 import logo from './assets/logo.png';
 import './sidebar.css';
 
@@ -19,8 +19,8 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem('username');
+    dispatch(logoutUser());
+    localStorage.removeItem('jwtToken');
     window.location.href = '/home';
   };
 
@@ -45,7 +45,7 @@ const Sidebar = () => {
                     className={activeNav === 'home' ? 'active' : ''}
                     to="/home"
                   >
-                    Doctor
+                    Doctors
                   </Link>
                 </li>
                 <li className="sidebar-link">
@@ -54,7 +54,7 @@ const Sidebar = () => {
                     className={activeNav === 'reserveform' ? 'active' : ''}
                     to="/reserveform"
                   >
-                    Reserve
+                    new Appointment
                   </Link>
                 </li>
                 <li className="sidebar-link">
@@ -63,14 +63,14 @@ const Sidebar = () => {
                     className={activeNav === 'myreservations' ? 'active' : ''}
                     to="/myreservations"
                   >
-                    Reservations
+                    appointments
                   </Link>
                 </li>
                 <li className="sidebar-link">
                   <Link
                     onClick={() => setActiveNav('adddoctor')}
                     className={activeNav === 'adddoctor' ? 'active' : ''}
-                    to="/adddoctor"
+                    to="/add_doctor"
                   >
                     Add Doctor
                   </Link>

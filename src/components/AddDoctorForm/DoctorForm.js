@@ -16,7 +16,7 @@ const DoctorForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (name && about && fee && specialization) {
+    if (name && about && fee && specialization && photo) {
       try {
         await dispatch(addDoctor({
           name,
@@ -45,7 +45,7 @@ const DoctorForm = () => {
       <form onSubmit={handleSubmit}>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
         <input type="text" value={photo} onChange={(e) => setPhoto(e.target.value)} placeholder="Photo (URL)" />
-        <input type="text" value={fee} onChange={(e) => setFee(e.target.value)} placeholder="Consultant's Fee" />
+        <input type="number" value={fee} onChange={(e) => setFee(e.target.value)} placeholder="Consultant's Fee" />
         <input type="text" value={specialization} onChange={(e) => setSpecialization(e.target.value)} placeholder="Specialization" />
         <textarea type="text" value={about} onChange={(e) => setAbout(e.target.value)} placeholder="About" />
         <button type="submit" disabled={status === 'loading'}>

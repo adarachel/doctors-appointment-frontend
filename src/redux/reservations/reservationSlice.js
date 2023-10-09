@@ -1,44 +1,70 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const API_BASE = 'http://127.0.0.1:3000/api';
+const API_BASE = 'https://doctors-appointment-0mkx.onrender.com/api/v1';
+
+// Helper function to get the JWT token from localStorage
+const gettoken = () => {
+  const jwtToken = localStorage.getItem('jwtToken');
+  console.log(`token is ${jwtToken}`);
+  return jwtToken;
+};
+
+const axiosInstance = axios.create({
+  baseURL: API_BASE,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${gettoken()}`,
+  },
+});
 
 export const createReserve = createAsyncThunk(
   'reserve/createReserve',
   async (payload) => {
     const ree = {
       appointment_date: payload.date,
-      appointment_time: payload.time,
+      appointment_duration: payload.time,
       doctor_id: payload.doctor,
-      username: payload.username,
       city: payload.city,
     };
-    const response = await fetch('http://127.0.0.1:3000/api/reservations', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(ree),
-    });
 
-    const data = await response.json();
-    return data;
+    console.log('Creating reservation with payload:', ree);
+
+    try {
+      const response = await axiosInstance.post('/appointments', ree);
+      console.log('Create reservation response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error creating reservation:', error);
+      throw error;
+    }
   },
 );
 
 export const getReserve = createAsyncThunk('reserve/getReserve', async () => {
-  const response = await fetch(`${API_BASE}/reservations`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await axiosInstance.get('/appointments');
+    console.log('Get reservations response:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error getting reservations:', error);
+    throw error;
+  }
 });
 
 export const deleteReserve = createAsyncThunk(
   'reserve/deleteReserve',
   async (payload) => {
-    const response = await fetch(`${API_BASE}/reservations/${payload}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    });
+    console.log('Deleting reservation with ID:', payload);
 
-    const data = await response.json();
-    return data;
+    try {
+      const response = await axiosInstance.delete(`/appointments/${payload}`);
+      console.log('Delete reservation response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error deleting reservation:', error);
+      throw error;
+    }
   },
 );
 
@@ -53,12 +79,14 @@ const ReservationSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createReserve.fulfilled, (state, action) => {
+      console.log('Reservation created successfully:', action.payload);
       state.regsuccess = action.payload;
       if (action.payload.token) {
         localStorage.setItem('success', JSON.stringify(action.payload));
       }
     });
     builder.addCase(getReserve.fulfilled, (state, action) => {
+      console.log('Fetched reservations:', action.payload);
       state.reservations = action.payload;
     });
   },
