@@ -1,13 +1,11 @@
+// App.js
 import React from 'react';
-import {
-  BrowserRouter, Routes, Route, useLocation,
-} from 'react-router-dom';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Login from './components/loginpage/Login';
 import Signup from './components/signupPage/Signup';
 import DeleteDoctor from './components/DeleteDoctor';
-import AddDcotor from './components/AddDoctor';
+import AddDoctor from './components/AddDoctor';
 import Private from './components/Private';
 import Reservations from './components/Reservations';
 import Home from './components/Home';
@@ -15,13 +13,13 @@ import Sidebar from './components/Sidebar';
 import Reserve from './components/Reserve';
 import DoctorDetails from './components/DoctorDetails';
 
-const App = () => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  }
+const App = () =>{
+// const token = localStorage.getItem('token');
+// if (token) {
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// }
 
-  return (
+ (
     <BrowserRouter>
       <AppContent />
     </BrowserRouter>

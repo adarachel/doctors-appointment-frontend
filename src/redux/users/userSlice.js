@@ -9,6 +9,13 @@ export const signupUser = createAsyncThunk('user/signupUser', async (user) => {
       'https://doctors-appointment-0mkx.onrender.com/signup',
       user,
     );
+    const token = response.headers.authorization.split(' ')[1]; // Extract the token from the "Bearer" header
+    console.log(token);
+    localStorage.removeItem('jwtToken');
+
+    localStorage.setItem('jwtToken', token); // Save the JWT token in local storage
+    console.log(localStorage.getItem('jwtToken'));
+
     return response.data;
   } catch (error) {
     throw new Error(error.message); // Throw the original error message
@@ -23,8 +30,10 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
 
     const token = response.headers.authorization.split(' ')[1]; // Extract the token from the "Bearer" header
     console.log(token);
-    // localStorage.setItem("jwtToken", token); // Save the JWT token in local storage
+    localStorage.removeItem('jwtToken');
 
+    localStorage.setItem('jwtToken', token); // Save the JWT token in local storage
+    console.log(localStorage.getItem('jwtToken'));
     return response.data;
   } catch (error) {
     throw new Error(error.message);

@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [adminKey, setAdminKey] = useState(''); // Add admin_key state
+  const [adminKey, setAdminKey] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const Login = () => {
       }
 
       await dispatch(loginUser({ user: userObj }));
-      navigate('/home');
+      navigate('/home'); // Use an absolute path ('/home')
       console.log('After navigation');
     } catch (error) {
       // Handle login failure (you can display an error message)

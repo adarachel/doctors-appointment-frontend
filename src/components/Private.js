@@ -1,16 +1,18 @@
-import { Navigate } from 'react-router';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Private = ({ children }) => {
-  const savedUsername = localStorage.getItem('username');
-
-  if (savedUsername) {
-    return children;
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const token  = localStorage.getItem('jwtToken')
+  const navigate = useNavigate();
+  if (!isAuthenticated || !token ) {
+    // Redirect to the login page if not authenticated
+    return navigate('/login');
   }
-  return <Navigate to="/login" />;
+
+  // Render the wrapped components for authenticated users
+  return <>{children}</>;
 };
 
-Private.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 export default Private;

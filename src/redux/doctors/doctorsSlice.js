@@ -9,10 +9,13 @@ export const initialState = {
   error: '',
 };
 
+const jwtToken = localStorage.getItem('jwtToken');
+console.log(`token is ${jwtToken}`);
+
 export const addDoctor = createAsyncThunk(
   'doctor/addDoctor',
   async (doctorData) => {
-    const response = await axios.post('http://localhost:3000/api/doctors', {
+    const response = await axios.post('https://doctors-appointment-0mkx.onrender.com/api/v1/doctors', {
       ...doctorData,
       price_hour: doctorData.price,
     });
@@ -22,10 +25,15 @@ export const addDoctor = createAsyncThunk(
 
 export const getDoctors = createAsyncThunk('doctors/getDoctors', async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/doctors');
+    const response = await axios.get('https://doctors-appointment-0mkx.onrender.com/api/v1/doctors', {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+    console.log(response.data);
     return response.data;
   } catch (error) {
-    throw error.response.data.error;
+    return rejectWithValue(error.response.data.error);
   }
 });
 
@@ -34,7 +42,7 @@ export const getDoctor = createAsyncThunk(
   async (doctorId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/doctors/${doctorId}`,
+        `https://doctors-appointment-0mkx.onrender.com/api/v1/doctors/${doctorId}`,
       );
       return response.data;
     } catch (error) {
@@ -47,7 +55,7 @@ export const deleteDoctor = createAsyncThunk(
   'doctor/deleteDoctor',
   async (doctorId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/doctors/${doctorId}`);
+      await axios.delete(`https://doctors-appointment-0mkx.onrender.com/api/v1/doctors/${doctorId}`);
       return doctorId;
     } catch (error) {
       throw error.response.data.error;
