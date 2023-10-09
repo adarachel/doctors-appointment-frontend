@@ -11,16 +11,20 @@ import 'swiper/css/navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
-  const { doctors, isLoading, error } = useSelector((store) => store.doctors);
+  const {
+    doctors = [],
+    isLoading,
+    // error,
+  } = useSelector((store) => store.doctors);
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
   };
-  console.log(doctors);
+  // console.log(doctors);
   useEffect(() => {
-    console.log('loading home');
+    // console.log('loading home');
     dispatch(getDoctors());
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -35,14 +39,14 @@ const Home = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="error-container">
-        <h2>Oopps somethings went wrong.PLease try again!</h2>
-        <p>{error}</p>
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className="error-container">
+  //       <h2>Oopps somethings went wrong.PLease try again!</h2>
+  //       <p>{error}</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="Home-container">
@@ -51,7 +55,11 @@ const Home = () => {
           {doctors.map((doctor) => (
             <div key={doctor.id} className="doctor-info">
               <Link to={`/doctor/${doctor.id}`} className="link">
-                <img className="photo" src={doctor.profile_pic} alt={doctor.name} />
+                <img
+                  className="photo"
+                  src={doctor.profile_pic}
+                  alt={doctor.name}
+                />
                 <h2>{doctor.name}</h2>
                 <p>{doctor.specialization}</p>
                 <p>{doctor.bio}</p>
@@ -82,7 +90,11 @@ const Home = () => {
           {doctors.map((doctor) => (
             <SwiperSlide className="doctor-info" key={doctor.id}>
               <Link to={`/doctor/${doctor.id}`} className="link">
-                <img className="photo" src={doctor.profile_pic} alt={doctor.name} />
+                <img
+                  className="photo"
+                  src={doctor.profile_pic}
+                  alt={doctor.name}
+                />
                 <h2>{doctor.name}</h2>
                 <p>{doctor.specialization}</p>
                 <p>{doctor.bio}</p>

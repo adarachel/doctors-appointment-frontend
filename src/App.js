@@ -14,6 +14,7 @@ import Home from './components/Home';
 import Sidebar from './components/Sidebar';
 import Reserve from './components/Reserve';
 import DoctorDetails from './components/DoctorDetails';
+import './App.css';
 
 const App = () => (
   <BrowserRouter>
