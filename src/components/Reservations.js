@@ -65,7 +65,7 @@ const Reservations = () => {
               />
               <h2 className="text-center">
                 Dr.
-                {reservation.doctors}
+                {reservation.doctor_id}
               </h2>
             </div>
             <div className="reserve-details">
