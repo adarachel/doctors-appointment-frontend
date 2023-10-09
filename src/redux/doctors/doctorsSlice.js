@@ -9,15 +9,27 @@ export const initialState = {
   error: '',
 };
 
-const jwtToken = localStorage.getItem('jwtToken');
-console.log(`token is ${jwtToken}`);
+// Helper function to get the JWT token from localStorage
+const gettoken = () => {
+  const jwtToken = localStorage.getItem('jwtToken');
+  console.log(`token is ${jwtToken}`);
+  return jwtToken;
+};
 
+// Axios instance with a default Authorization header
+const axiosInstance = axios.create({
+  baseURL: 'https://doctors-appointment-0mkx.onrender.com/api/v1',
+  headers: {
+    Authorization: `Bearer ${gettoken()}`,
+  },
+});
+
+// Create async thunks with the axiosInstance
 export const addDoctor = createAsyncThunk(
   'doctor/addDoctor',
   async (doctorData) => {
-    const response = await axios.post('https://doctors-appointment-0mkx.onrender.com/api/v1/doctors', {
-      ...doctorData,
-      price_hour: doctorData.price,
+    const response = await axiosInstance.post('/doctors', {
+      doctor: { doctorData },
     });
     return response.data;
   },
@@ -25,15 +37,12 @@ export const addDoctor = createAsyncThunk(
 
 export const getDoctors = createAsyncThunk('doctors/getDoctors', async () => {
   try {
-    const response = await axios.get('https://doctors-appointment-0mkx.onrender.com/api/v1/doctors', {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    });
+    console.log('fetching doc');
+    const response = await axiosInstance.get('/doctors');
     console.log(response.data);
     return response.data;
   } catch (error) {
-    return rejectWithValue(error.response.data.error);
+    return error.response.data.error;
   }
 });
 
@@ -41,9 +50,7 @@ export const getDoctor = createAsyncThunk(
   'doctors/getDoctor',
   async (doctorId) => {
     try {
-      const response = await axios.get(
-        `https://doctors-appointment-0mkx.onrender.com/api/v1/doctors/${doctorId}`,
-      );
+      const response = await axiosInstance.get(`/doctors/${doctorId}`);
       return response.data;
     } catch (error) {
       throw error.response.data.error;
@@ -55,7 +62,7 @@ export const deleteDoctor = createAsyncThunk(
   'doctor/deleteDoctor',
   async (doctorId) => {
     try {
-      await axios.delete(`https://doctors-appointment-0mkx.onrender.com/api/v1/doctors/${doctorId}`);
+      await axiosInstance.delete(`/doctors/${doctorId}`);
       return doctorId;
     } catch (error) {
       throw error.response.data.error;
@@ -80,14 +87,12 @@ export const doctorsSlice = createSlice({
         isLoading: false,
         error: action.payload,
       }))
-
       .addCase(getDoctor.pending, (state) => ({ ...state, isLoading: true }))
       .addCase(getDoctor.fulfilled, (state, action) => ({
         ...state,
         isLoading: false,
         doctor: action.payload,
       }))
-
       .addCase(deleteDoctor.pending, (state) => ({ ...state, isLoading: true }))
       .addCase(deleteDoctor.fulfilled, (state, action) => {
         const updatedDoctors = state.doctors.filter(

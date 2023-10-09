@@ -18,8 +18,9 @@ const Home = () => {
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
   };
-
+  console.log(doctors);
   useEffect(() => {
+    console.log('loading home');
     dispatch(getDoctors());
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -50,12 +51,13 @@ const Home = () => {
           {doctors.map((doctor) => (
             <div key={doctor.id} className="doctor-info">
               <Link to={`/${doctor.id}`} className="link">
-                <img className="photo" src={doctor.photo} alt={doctor.name} />
+                <img className="photo" src={doctor.profile_pic} alt={doctor.name} />
                 <h2>{doctor.name}</h2>
-                <p>{doctor.about}</p>
+                <p>{doctor.specialization}</p>
+                <p>{doctor.bio}</p>
                 <p>
                   Buy one hour of time with only $
-                  {doctor.price_hour}
+                  {doctor.consultation_fee}
                 </p>
               </Link>
             </div>
