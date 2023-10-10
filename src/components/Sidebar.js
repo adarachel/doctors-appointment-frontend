@@ -21,7 +21,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     dispatch(logoutUser());
     localStorage.removeItem('jwtToken');
-    window.location.href = '/home';
+    window.location.href = '/';
   };
 
   return (
