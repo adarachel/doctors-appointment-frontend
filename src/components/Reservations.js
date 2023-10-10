@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
-import { getReservations } from '../redux/reservations/reservationsSlice';
+import { getReserve } from '../redux/reservations/reservationsSlice';
+import { getDoctors } from '../redux/doctors/doctorsSlice';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -14,10 +15,11 @@ const Reservations = () => {
   const { reservations, isLoading, error } = useSelector(
     (store) => store.reservations,
   );
+  const redoctors = useSelector((store) => store.doctors.doctors);
   const dispatch = useDispatch();
-  console.log(reservations);
   useEffect(() => {
-    dispatch(getReservations());
+    dispatch(getReserve());
+    dispatch(getDoctors());
   }, [dispatch]);
   if (isLoading) {
     return (
@@ -57,17 +59,21 @@ const Reservations = () => {
       >
         {reservations.map((reservation) => (
           <SwiperSlide className="reservation-info flex" key={reservation.id}>
-            <div className="reservation-imag flex">
-              <img
-                className="photo"
-                src={reservation.photo}
-                alt={reservation.doctor_name}
-              />
-              <h2 className="text-center">
-                Dr.
-                {reservation.doctor_name}
-              </h2>
-            </div>
+            {redoctors
+              .filter((value) => value.id === reservation.doctor_id)
+              .map((doctor) => (
+                <div className="reservation-imag flex" key={doctor.id}>
+                  <img
+                    className="photo"
+                    src={doctor.profile_pic}
+                    alt={doctor.name}
+                  />
+                  <h2 className="text-center">
+                    Dr.
+                    {doctor.name}
+                  </h2>
+                </div>
+              ))}
             <div className="reserve-details">
               <p>
                 <strong>Address:&ensp;</strong>
@@ -75,13 +81,19 @@ const Reservations = () => {
               </p>
               <p>
                 <strong>Date:&ensp;</strong>
-                {reservation.appointment_date}
+                {reservation.appointment_date.split('T')[0]}
               </p>
               <p>
                 <strong>Time:&ensp;</strong>
-                {new Date(reservation.appointment_duration).getHours()}
-                :
-                {new Date(reservation.appointment_duration).getMinutes()}
+                {reservation.appointment_duration}
+                {' '}
+                minutes
+              </p>
+
+              <p>
+                <strong>Fees:&ensp;</strong>
+                $
+                {reservation.facility_fee}
               </p>
             </div>
           </SwiperSlide>
