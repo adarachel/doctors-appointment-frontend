@@ -32,7 +32,7 @@ const Home = () => {
       dispatch(getDoctors());
       // location.reload();
       window.location.reload();
-      console.log('fetttttttt');
+
       // Set "load" to true in localStorage after fetching data
       localStorage.setItem('load', 'true');
     }

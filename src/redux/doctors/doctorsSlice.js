@@ -12,7 +12,7 @@ export const initialState = {
 // Helper function to get the JWT token from localStorage
 const gettoken = () => {
   const jwtToken = localStorage.getItem('jwtToken');
-  console.log(`token is ${jwtToken}`);
+
   return jwtToken;
 };
 
@@ -28,18 +28,15 @@ const axiosInstance = axios.create({
 export const addDoctor = createAsyncThunk(
   'doctor/addDoctor',
   async (doctorData) => {
-    console.log(doctorData);
-    const response = await axiosInstance.post('/doctors',
-      doctorData);
+    const response = await axiosInstance.post('/doctors', doctorData);
     return response.data;
   },
 );
 
 export const getDoctors = createAsyncThunk('doctors/getDoctors', async () => {
   try {
-    console.log('fetching doc');
     const response = await axiosInstance.get('/doctors');
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     return error.response.data.error;
@@ -51,6 +48,7 @@ export const getDoctor = createAsyncThunk(
   async (doctorId) => {
     try {
       const response = await axiosInstance.get(`/doctors/${doctorId}`);
+
       return response.data;
     } catch (error) {
       throw error.response.data.error;

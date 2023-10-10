@@ -18,11 +18,16 @@ const Signup = () => {
 
     // Check if all fields are filled and password matches confirm password
     if (name && username && email && password && password === confirmPassword) {
-      dispatch(signupUser({
-        user: {
-          name, username, email, password,
-        },
-      }));
+      dispatch(
+        signupUser({
+          user: {
+            name,
+            username,
+            email,
+            password,
+          },
+        }),
+      );
       navigate('/login');
     } else if (!password === confirmPassword) {
       alert('Password and Confirm Password do not match.');

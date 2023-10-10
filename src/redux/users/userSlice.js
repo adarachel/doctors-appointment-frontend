@@ -4,17 +4,15 @@ import axios from 'axios';
 
 export const signupUser = createAsyncThunk('user/signupUser', async (user) => {
   try {
-    console.log(user);
     const response = await axios.post(
       'https://doctors-appointment-0mkx.onrender.com/signup',
       user,
     );
     const token = response.headers.authorization.split(' ')[1]; // Extract the token from the "Bearer" header
-    console.log(token);
+
     localStorage.removeItem('jwtToken');
 
     localStorage.setItem('jwtToken', token); // Save the JWT token in local storage
-    console.log(localStorage.getItem('jwtToken'));
 
     return response.data;
   } catch (error) {
@@ -29,11 +27,11 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
     );
 
     const token = response.headers.authorization.split(' ')[1]; // Extract the token from the "Bearer" header
-    console.log(token);
+
     localStorage.removeItem('jwtToken');
 
     localStorage.setItem('jwtToken', token); // Save the JWT token in local storage
-    console.log(localStorage.getItem('jwtToken'));
+
     return response.data;
   } catch (error) {
     throw new Error(error.message);
@@ -72,14 +70,12 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = '';
     },
-
   },
   extraReducers: (builder) => {
     builder
       .addCase(signupUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        console.log('created');
-        console.log(action.payload.data);
+
         state.user = action.payload.data;
         state.error = action.payload.message;
       })

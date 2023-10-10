@@ -27,10 +27,8 @@ const Login = () => {
       await dispatch(loginUser({ user: userObj }));
 
       navigate('/home'); // Use an absolute path ('/home')
-      console.log('After navigation');
     } catch (error) {
       // Handle login failure (you can display an error message)
-      console.log(error);
     }
   };
 
