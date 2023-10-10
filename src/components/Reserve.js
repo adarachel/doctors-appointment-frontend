@@ -74,7 +74,7 @@ const Reservation = () => {
         />
 
         <input
-          type="number"
+          type="time"
           name="time"
           value={reserve.time}
           onChange={handleInputChange}
