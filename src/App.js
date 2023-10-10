@@ -36,7 +36,7 @@ const AppContent = () => {
         <Route index element={<Private><Home /></Private>} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
-        <Route path="home" element={<Private><Home /></Private>} />
+        <Route path="/home" element={<Private><Home /></Private>} />
         <Route path="/add_doctor" element={<Private><AddDoctor /></Private>} />
         <Route path="/delete" element={<Private><DeleteDoctor /></Private>} />
         <Route path="/doctor/:doctorId" element={<Private><DoctorDetails /></Private>} />
