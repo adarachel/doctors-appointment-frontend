@@ -32,11 +32,17 @@ const Sidebar = () => {
       </button>
       <div ref={navRef} className="sidebar_container_items">
         <div className="sidebar_container flex">
-          <button className="nav_btn nav_btn_close" type="button" onClick={showNavbar}>
+          <button
+            className="nav_btn nav_btn_close"
+            type="button"
+            onClick={showNavbar}
+          >
             <FaTimes />
           </button>
           <div className="sidebar_container-uperhead flex">
-            <div className="sidebar_container-logo"><img src={logo} alt="logo" /></div>
+            <div className="sidebar_container-logo">
+              <img src={logo} alt="logo" />
+            </div>
             <div className="sidebar_container-list">
               <ul className="sidebar_list">
                 <li className="sidebar-link">
@@ -54,7 +60,7 @@ const Sidebar = () => {
                     className={activeNav === 'reserveform' ? 'active' : ''}
                     to="/reserveform"
                   >
-                    new Appointment
+                    New Appointment
                   </Link>
                 </li>
                 <li className="sidebar-link">
@@ -63,7 +69,7 @@ const Sidebar = () => {
                     className={activeNav === 'myreservations' ? 'active' : ''}
                     to="/myreservations"
                   >
-                    appointments
+                    Appointments
                   </Link>
                 </li>
                 <li className="sidebar-link">
@@ -88,7 +94,10 @@ const Sidebar = () => {
                 <li
                   className="sidebar-link"
                   style={{
-                    display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
                 >
                   <lord-icon
@@ -116,7 +125,6 @@ const Sidebar = () => {
 
           <Outlet />
         </div>
-
       </div>
     </>
   );

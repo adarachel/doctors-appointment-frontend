@@ -61,11 +61,11 @@ const Reservations = () => {
               <img
                 className="photo"
                 src={reservation.photo}
-                alt={reservation.name}
+                alt={reservation.doctor_name}
               />
               <h2 className="text-center">
                 Dr.
-                {reservation.doctor_id}
+                {reservation.doctor_name}
               </h2>
             </div>
             <div className="reserve-details">
