@@ -23,8 +23,9 @@ const Login = () => {
       if (adminKey) {
         userObj.adminKey = adminKey;
       }
-
+      localStorage.setItem('load', false);
       await dispatch(loginUser({ user: userObj }));
+
       navigate('/home'); // Use an absolute path ('/home')
       console.log('After navigation');
     } catch (error) {

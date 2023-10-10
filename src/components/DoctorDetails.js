@@ -18,9 +18,9 @@ const DoctorDetails = () => {
     <section className="container">
       <div className="dimg-desktop">
         <img
-          src={doctor.photo}
+          src={doctor.profile_pic}
           alt={doctor.name}
-          crossOrigin="anonymous | use-credentias"
+          // crossOrigin="anonymous | use-credentias"
         />
       </div>
       <div className="dinfo">
@@ -29,9 +29,9 @@ const DoctorDetails = () => {
         </div>
         <div className="dimg-mobile">
           <img
-            src={doctor.photo}
+            src={doctor.profile_pic}
             alt={doctor.name}
-            crossOrigin="anonymous | use-credentias"
+            // crossOrigin="anonymous | use-credentias"
           />
         </div>
         <ul>

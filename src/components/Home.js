@@ -22,11 +22,21 @@ const Home = () => {
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
   };
-  // console.log(doctors);
+
   useEffect(() => {
-    // console.log('loading home');
     dispatch(getDoctors());
     handleResize();
+
+    // Check if "load" is false in localStorage before fetching data
+    if (localStorage.getItem('load') === 'false') {
+      dispatch(getDoctors());
+      // location.reload();
+      window.location.reload();
+      console.log('fetttttttt');
+      // Set "load" to true in localStorage after fetching data
+      localStorage.setItem('load', 'true');
+    }
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch]);
