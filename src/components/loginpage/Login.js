@@ -26,7 +26,7 @@ const Login = () => {
       localStorage.setItem('load', false);
       await dispatch(loginUser({ user: userObj }));
 
-      navigate('/home'); // Use an absolute path ('/home')
+      navigate('/');
     } catch (error) {
       // Handle login failure (you can display an error message)
     }
