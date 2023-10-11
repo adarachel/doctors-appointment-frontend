@@ -20,9 +20,9 @@ const DoctorForm = () => {
       try {
         await dispatch(addDoctor({
           name,
-          bio: about, // Assuming this is for the bio
-          profile_pic: photo, // Assuming this is for the photo URL
-          consultation_fee: fee, // Assuming this is for the consultant's fee
+          bio: about,
+          profile_pic: photo,
+          consultation_fee: fee,
           specialization,
         }));
         navigate('/home');
@@ -41,7 +41,6 @@ const DoctorForm = () => {
 
   return (
     <div className="form-container">
-      {/* Your Lottie animation embed */}
       <embed src="https://lottie.host/?file=e508658a-d3ad-4854-9809-830fd303ce38/tAnKJn1r42.json" />
 
       <form onSubmit={handleSubmit}>

@@ -3,14 +3,12 @@ import axios from 'axios';
 
 const API_BASE = 'https://doctors-appointment-0mkx.onrender.com/api/v1/';
 
-// Helper function to get the JWT token from localStorage
 const gettoken = () => {
   const jwtToken = localStorage.getItem('jwtToken');
 
   return jwtToken;
 };
 
-// Axios instance with a default Authorization header
 const axiosInstance = axios.create({
   baseURL: API_BASE,
   headers: {
@@ -47,14 +45,6 @@ export const getReserve = createAsyncThunk('reserve/getReserve', async () => {
     throw new Error('Error occured try again');
   }
 });
-
-// export const deleteReserve = createAsyncThunk(
-//   'reserve/deleteReserve',
-//   async (payload) => {
-//     await axiosInstance.delete(`/appointments/${payload}`);
-//     return payload;
-//   },
-// );
 
 const initialState = {
   reservations: [],

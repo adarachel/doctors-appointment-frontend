@@ -3,7 +3,6 @@ import React from 'react';
 import {
   BrowserRouter, Routes, Route, useLocation,
 } from 'react-router-dom';
-// import axios from 'axios';
 import Login from './components/loginpage/Login';
 import Signup from './components/signupPage/Signup';
 import DeleteDoctor from './components/DeleteDoctor';

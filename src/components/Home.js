@@ -27,13 +27,10 @@ const Home = () => {
     dispatch(getDoctors());
     handleResize();
 
-    // Check if "load" is false in localStorage before fetching data
     if (localStorage.getItem('load') === 'false') {
       dispatch(getDoctors());
-      // location.reload();
       window.location.reload();
 
-      // Set "load" to true in localStorage after fetching data
       localStorage.setItem('load', 'true');
     }
 

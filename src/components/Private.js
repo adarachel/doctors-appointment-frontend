@@ -8,16 +8,13 @@ const Private = ({ children }) => {
 
   useEffect(() => {
     if (!token) {
-      // Redirect to the login page if not authenticated
       navigate('/login');
     }
   }, [token, navigate]);
 
-  // Render the wrapped components for authenticated users
   return <>{children}</>;
 };
 
-// Add prop validation for the children prop
 Private.propTypes = {
   children: PropTypes.node.isRequired,
 };
