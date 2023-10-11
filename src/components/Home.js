@@ -14,7 +14,7 @@ const Home = () => {
   const {
     doctors = [],
     isLoading,
-    // error,
+    error,
   } = useSelector((store) => store.doctors);
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(false);
@@ -49,14 +49,14 @@ const Home = () => {
     );
   }
 
-  // if (error) {
-  //   return (
-  //     <div className="error-container">
-  //       <h2>Oopps somethings went wrong.PLease try again!</h2>
-  //       <p>{error}</p>
-  //     </div>
-  //   );
-  // }
+  if (error) {
+    return (
+      <div className="error-container">
+        <h2>Oopps somethings went wrong.PLease try again!</h2>
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="Home-container">
