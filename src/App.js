@@ -40,8 +40,8 @@ const AppContent = () => {
         <Route path="/delete" element={<Private><DeleteDoctor /></Private>} />
         <Route path="/doctor/:doctorId" element={<Private><DoctorDetails /></Private>} />
 
-        <Route path="reserveform" element={<Private><Reserve /></Private>} />
-        <Route path="myreservations" element={<Private><Reservations /></Private>} />
+        <Route path="appointment_form" element={<Private><Reserve /></Private>} />
+        <Route path="appointments" element={<Private><Reservations /></Private>} />
       </Routes>
     </>
   );

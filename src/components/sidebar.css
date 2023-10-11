@@ -88,6 +88,14 @@ small {
 .nav_btn {
   display: none;
 }
+.logout-btn{
+  display: flex;
+  border: none;
+  background-color: rgba(250, 235, 215, 0);
+  font-size: 1.2rem;
+  padding-left: 1rem;
+  margin-top: 2.5rem;
+}
 
 @media (max-width: 768px) {
   .nav_btn {
