@@ -58,7 +58,7 @@ const Reservations = () => {
         className="mySwiper"
       >
         {reservations.map((reservation) => (
-          <SwiperSlide className="reservation-info flex" key={reservation.id}>
+          <SwiperSlide className="reservation-info reservation-card flex" key={reservation.id}>
             {redoctors
               .filter((value) => value.id === reservation.doctor_id)
               .map((doctor) => (
@@ -87,14 +87,31 @@ const Reservations = () => {
                 <strong>Time:&ensp;</strong>
                 {reservation.appointment_duration}
                 {' '}
-                minutes
+                hours
               </p>
 
               <p>
-                <strong>Fees:&ensp;</strong>
+                <strong>Facility_Fee:&ensp;</strong>
                 $
                 {reservation.facility_fee}
               </p>
+              {redoctors
+                .filter((value) => value.id === reservation.doctor_id)
+                .map((doctor) => (
+                  <div key={doctor.id}>
+                    <p>
+                      <strong>Consultation Fee/Hour:&ensp;</strong>
+                      $
+                      {doctor.consultation_fee}
+                    </p>
+                    <p>
+                      <strong>Total Reservation Fee:&ensp;</strong>
+                      $
+                      {(doctor.consultation_fee) * (reservation.appointment_duration)
+                      + parseFloat(reservation.facility_fee)}
+                    </p>
+                  </div>
+                ))}
             </div>
           </SwiperSlide>
         ))}
