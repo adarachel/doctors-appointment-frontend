@@ -13,7 +13,7 @@ const DoctorDetails = () => {
   }, [dispatch, doctorId]);
 
   const doctor = useSelector((state) => state.doctors.doctor);
-
+  console.log(doctor);
   return (
     <section className="container">
       <div className="dimg-desktop">
@@ -37,11 +37,12 @@ const DoctorDetails = () => {
         <ul>
           <li>
             Price per Hour: $
-            {doctor.price_hour}
+            {doctor.consultation_fee}
           </li>
           <li>
             About:
-            {doctor.about}
+            {' '}
+            {doctor.bio}
           </li>
         </ul>
         <button type="button" className="rbtn">
