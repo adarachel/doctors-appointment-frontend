@@ -162,7 +162,9 @@ Example command:
 
 👤 **Festus Enning [member 4]**
 
-- GitHub: [@githubhandle](https://github.com/Enning94)
+- GitHub: [@Enning94](https://github.com/Enning94)
+- Twitter: [@nana_akyerefi](https://twitter.com/nana_akyerefi)
+- LinkedIn: [Enning Festus](https://www.linkedin.com/in/enningfestus/)
 
 👤 **Vahe Stepanyan [member 5]**
 
