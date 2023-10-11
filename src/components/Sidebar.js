@@ -58,7 +58,7 @@ const Sidebar = () => {
                   <Link
                     onClick={() => setActiveNav('reserveform')}
                     className={activeNav === 'reserveform' ? 'active' : ''}
-                    to="/reserveform"
+                    to="/appointment_form"
                   >
                     New Appointment
                   </Link>
@@ -67,7 +67,7 @@ const Sidebar = () => {
                   <Link
                     onClick={() => setActiveNav('myreservations')}
                     className={activeNav === 'myreservations' ? 'active' : ''}
-                    to="/myreservations"
+                    to="/appointments"
                   >
                     Appointments
                   </Link>
@@ -90,24 +90,10 @@ const Sidebar = () => {
                     Del Doctor
                   </Link>
                 </li>
-
-                <li
-                  className="sidebar-link"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <lord-icon
-                    src="https://cdn.lordicon.com/hcuxerst.json"
-                    trigger="hover"
-                    colors="primary:#16c72e,secondary:#242424"
-                    style={{ width: '60px', height: '60px' }}
-                    onClick={handleLogout}
-                  />
-                  logout
+                <li className="sidebar-link">
+                  <button type="submit" onClick={handleLogout} className="logout-btn">
+                    logout
+                  </button>
                 </li>
               </ul>
             </div>

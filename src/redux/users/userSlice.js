@@ -8,11 +8,11 @@ export const signupUser = createAsyncThunk('user/signupUser', async (user) => {
       user,
     );
     const token = response.headers.authorization.split(' ')[1];
-
+    const { username } = response.data.status.data.user;
     localStorage.removeItem('jwtToken');
 
     localStorage.setItem('jwtToken', token);
-
+    localStorage.setItem('username', username);
     return response.data;
   } catch (error) {
     throw new Error(error.message);
@@ -26,9 +26,9 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
     );
 
     const token = response.headers.authorization.split(' ')[1];
-
+    const { username } = response.data.status.data.user;
     localStorage.removeItem('jwtToken');
-
+    localStorage.setItem('username', username);
     localStorage.setItem('jwtToken', token);
 
     return response.data;
