@@ -58,7 +58,7 @@ const Sidebar = () => {
                   <Link
                     onClick={() => setActiveNav('reserveform')}
                     className={activeNav === 'reserveform' ? 'active' : ''}
-                    to="/reserveform"
+                    to="/appointment_form"
                   >
                     New Appointment
                   </Link>
@@ -67,7 +67,7 @@ const Sidebar = () => {
                   <Link
                     onClick={() => setActiveNav('myreservations')}
                     className={activeNav === 'myreservations' ? 'active' : ''}
-                    to="/myreservations"
+                    to="/appointments"
                   >
                     Appointments
                   </Link>

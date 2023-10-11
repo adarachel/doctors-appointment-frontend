@@ -39,13 +39,13 @@ const DoctorDetails = () => {
             {doctor.consultation_fee}
           </li>
           <li>
-            About:
+            Bio:
             {' '}
             {doctor.bio}
           </li>
         </ul>
         <button type="button" className="rbtn">
-          <Link to="/reserveform" className="rebtn">
+          <Link to="/appointment_form" className="rebtn">
             Reserve
           </Link>
         </button>
