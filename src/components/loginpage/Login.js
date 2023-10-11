@@ -8,15 +8,27 @@ import './login.css';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [adminKey, setAdminKey] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(loginUser(username));
-      navigate('/home');
+      const userObj = {
+        login,
+        password,
+      };
+
+      if (adminKey) {
+        userObj.adminKey = adminKey;
+      }
+      localStorage.setItem('load', false);
+      await dispatch(loginUser({ user: userObj }));
+
+      navigate('/');
     } catch (error) {
-      // eslint-disable-next-line no-console
+      // Handle login failure (you can display an error message)
     }
   };
 
@@ -33,7 +45,26 @@ const Login = () => {
             state="morph"
             style={{ width: '180px', height: '180px' }}
           />
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+          <input
+            type="text"
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
+            placeholder="Username or email"
+            required
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+          <input
+            type="text"
+            value={adminKey}
+            onChange={(e) => setAdminKey(e.target.value)}
+            placeholder="Admin Key"
+          />
           <button type="submit">Log In</button>
         </form>
         <p>

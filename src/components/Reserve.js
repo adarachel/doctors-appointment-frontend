@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createReserve } from '../redux/reservations/reservationSlice';
+import { createReserve } from '../redux/reservations/reservationsSlice';
 import { getDoctors } from '../redux/doctors/doctorsSlice';
 import './componentsCSS/reserve.css';
 
@@ -45,7 +45,7 @@ const Reservation = () => {
 
     try {
       // Dispatch the createReserve action to make the reservation request
-      await dispatch(createReserve({ ...reserve, username: user }));
+      await dispatch(createReserve(reserve));
       alert('Reservation created successfully!');
       navigate('/myreservations'); // Redirect to the reservation page after successful reservation
     } catch (error) {
@@ -74,11 +74,11 @@ const Reservation = () => {
         />
 
         <input
-          type="time"
+          type="number"
           name="time"
           value={reserve.time}
           onChange={handleInputChange}
-          placeholder="Time"
+          placeholder="Time Duration"
         />
 
         <div className="select-container">

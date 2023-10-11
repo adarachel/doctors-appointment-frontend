@@ -1,16 +1,22 @@
-import { Navigate } from 'react-router';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
+import { useNavigate } from 'react-router-dom';
 
 const Private = ({ children }) => {
-  const savedUsername = localStorage.getItem('username');
+  const token = localStorage.getItem('jwtToken');
+  const navigate = useNavigate();
 
-  if (savedUsername) {
-    return children;
-  }
-  return <Navigate to="/login" />;
+  useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+  }, [token, navigate]);
+
+  return <>{children}</>;
 };
 
 Private.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
 export default Private;
