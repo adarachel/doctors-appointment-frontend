@@ -88,7 +88,8 @@ small {
 .nav_btn {
   display: none;
 }
-.logout-btn{
+
+.logout-btn {
   display: flex;
   border: none;
   background-color: rgba(250, 235, 215, 0);
