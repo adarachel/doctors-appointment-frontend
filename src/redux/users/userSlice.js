@@ -1,24 +1,61 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const signupUser = createAsyncThunk('user/signupUser', async (user, { rejectWithValue }) => {
+export const signupUser = createAsyncThunk('user/signupUser', async (user) => {
   try {
-    const response = await axios.post('http://localhost:3000/users', user);
+    const response = await axios.post(
+      'https://doctors-appointment-0mkx.onrender.com/signup',
+      user,
+    );
+    const token = response.headers.authorization.split(' ')[1];
+
+    localStorage.removeItem('jwtToken');
+
+    localStorage.setItem('jwtToken', token);
+
     return response.data;
   } catch (error) {
-    return rejectWithValue(error.response.data.error);
+    throw new Error(error.message);
+  }
+});
+export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
+  try {
+    const response = await axios.post(
+      'https://doctors-appointment-0mkx.onrender.com/login',
+      user,
+    );
+
+    const token = response.headers.authorization.split(' ')[1];
+
+    localStorage.removeItem('jwtToken');
+
+    localStorage.setItem('jwtToken', token);
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
   }
 });
 
-export const loginUser = createAsyncThunk('user/loginUser', async (username) => {
-  const response = await axios.get(`http://localhost:3000/users/${username}`);
-  return response.data;
+export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
+  try {
+    await axios.delete('/logout', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwtToken')}`,
+      },
+    });
+    localStorage.removeItem('jwtToken');
+    return true;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 });
 
 const userSlice = createSlice({
   name: 'user',
   initialState: {
     user: null,
+    token: null,
     status: 'idle',
     error: null,
   },
@@ -26,12 +63,12 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = '';
     },
-
   },
   extraReducers: (builder) => {
     builder
       .addCase(signupUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
+
         state.user = action.payload.data;
         state.error = action.payload.message;
       })

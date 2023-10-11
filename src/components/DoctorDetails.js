@@ -13,14 +13,14 @@ const DoctorDetails = () => {
   }, [dispatch, doctorId]);
 
   const doctor = useSelector((state) => state.doctors.doctor);
-
+  console.log(doctor);
   return (
     <section className="container">
       <div className="dimg-desktop">
         <img
-          src={doctor.photo}
+          src={doctor.profile_pic}
           alt={doctor.name}
-          crossOrigin="anonymous | use-credentias"
+          // crossOrigin="anonymous | use-credentias"
         />
       </div>
       <div className="dinfo">
@@ -29,19 +29,20 @@ const DoctorDetails = () => {
         </div>
         <div className="dimg-mobile">
           <img
-            src={doctor.photo}
+            src={doctor.profile_pic}
             alt={doctor.name}
-            crossOrigin="anonymous | use-credentias"
+            // crossOrigin="anonymous | use-credentias"
           />
         </div>
         <ul>
           <li>
             Price per Hour: $
-            {doctor.price_hour}
+            {doctor.consultation_fee}
           </li>
           <li>
             About:
-            {doctor.about}
+            {' '}
+            {doctor.bio}
           </li>
         </ul>
         <button type="button" className="rbtn">

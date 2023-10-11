@@ -1,47 +1,71 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const initialState = {
-  reservations: [],
-  isLoading: false,
-  error: '',
+const API_BASE = 'https://doctors-appointment-0mkx.onrender.com/api/v1/';
+
+const gettoken = () => {
+  const jwtToken = localStorage.getItem('jwtToken');
+
+  return jwtToken;
 };
 
-export const getReservations = createAsyncThunk(
-  'reservations/getReservations',
-  async () => {
+const axiosInstance = axios.create({
+  baseURL: API_BASE,
+  headers: {
+    Authorization: `Bearer ${gettoken()}`,
+  },
+});
+
+export const createReserve = createAsyncThunk(
+  'reserve/createReserve',
+  async (payload) => {
+    const ree = {
+      appointment_date: payload.date,
+      appointment_duration: payload.time,
+      doctor_id: payload.doctor,
+      city: payload.city,
+    };
+
     try {
-      const response = await axios.get(
-        'http://localhost:3000/api/reservations',
-      );
+      const response = await axiosInstance.post('/appointments', ree);
+
       return response.data;
     } catch (error) {
-      throw error.response.data.error;
+      throw new Error('Error occured try again');
     }
   },
 );
 
-export const reservationsSlice = createSlice({
-  name: 'DateTime',
+export const getReserve = createAsyncThunk('reserve/getReserve', async () => {
+  try {
+    const response = await axiosInstance.get('/appointments');
+
+    return response.data;
+  } catch (error) {
+    throw new Error('Error occured try again');
+  }
+});
+
+const initialState = {
+  reservations: [],
+  regsuccess: null,
+};
+
+const ReservationSlice = createSlice({
+  name: 'reserve',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(getReservations.pending, (state) => ({
-        ...state,
-        isLoading: true,
-      }))
-      .addCase(getReservations.fulfilled, (state, action) => ({
-        ...state,
-        isLoading: false,
-        reservations: action.payload,
-      }))
-      .addCase(getReservations.rejected, (state, action) => ({
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      }));
+    builder.addCase(createReserve.fulfilled, (state, action) => {
+      state.regsuccess = action.payload;
+      if (action.payload.token) {
+        localStorage.setItem('success', JSON.stringify(action.payload));
+      }
+    });
+    builder.addCase(getReserve.fulfilled, (state, action) => {
+      state.reservations = action.payload;
+    });
   },
 });
 
-export default reservationsSlice.reducer;
+export default ReservationSlice.reducer;

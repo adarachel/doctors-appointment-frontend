@@ -6,7 +6,7 @@ import {
   FaBars, FaTimes,
 } from 'react-icons/fa';
 import { TiSocialGooglePlus } from 'react-icons/ti';
-import { logout } from '../redux/users/userSlice';
+import { logoutUser } from '../redux/users/userSlice';
 import logo from './assets/logo.png';
 import './sidebar.css';
 
@@ -19,9 +19,9 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem('username');
-    window.location.href = '/home';
+    dispatch(logoutUser());
+    localStorage.removeItem('jwtToken');
+    window.location.href = '/';
   };
 
   return (
@@ -32,11 +32,17 @@ const Sidebar = () => {
       </button>
       <div ref={navRef} className="sidebar_container_items">
         <div className="sidebar_container flex">
-          <button className="nav_btn nav_btn_close" type="button" onClick={showNavbar}>
+          <button
+            className="nav_btn nav_btn_close"
+            type="button"
+            onClick={showNavbar}
+          >
             <FaTimes />
           </button>
           <div className="sidebar_container-uperhead flex">
-            <div className="sidebar_container-logo"><img src={logo} alt="logo" /></div>
+            <div className="sidebar_container-logo">
+              <img src={logo} alt="logo" />
+            </div>
             <div className="sidebar_container-list">
               <ul className="sidebar_list">
                 <li className="sidebar-link">
@@ -45,7 +51,7 @@ const Sidebar = () => {
                     className={activeNav === 'home' ? 'active' : ''}
                     to="/home"
                   >
-                    Doctor
+                    Doctors
                   </Link>
                 </li>
                 <li className="sidebar-link">
@@ -54,7 +60,7 @@ const Sidebar = () => {
                     className={activeNav === 'reserveform' ? 'active' : ''}
                     to="/reserveform"
                   >
-                    Reserve
+                    New Appointment
                   </Link>
                 </li>
                 <li className="sidebar-link">
@@ -63,14 +69,14 @@ const Sidebar = () => {
                     className={activeNav === 'myreservations' ? 'active' : ''}
                     to="/myreservations"
                   >
-                    Reservations
+                    Appointments
                   </Link>
                 </li>
                 <li className="sidebar-link">
                   <Link
                     onClick={() => setActiveNav('adddoctor')}
                     className={activeNav === 'adddoctor' ? 'active' : ''}
-                    to="/adddoctor"
+                    to="/add_doctor"
                   >
                     Add Doctor
                   </Link>
@@ -88,7 +94,10 @@ const Sidebar = () => {
                 <li
                   className="sidebar-link"
                   style={{
-                    display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
                 >
                   <lord-icon
@@ -116,7 +125,6 @@ const Sidebar = () => {
 
           <Outlet />
         </div>
-
       </div>
     </>
   );

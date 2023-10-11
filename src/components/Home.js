@@ -11,7 +11,11 @@ import 'swiper/css/navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
-  const { doctors, isLoading, error } = useSelector((store) => store.doctors);
+  const {
+    doctors = [],
+    isLoading,
+    error,
+  } = useSelector((store) => store.doctors);
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -22,6 +26,14 @@ const Home = () => {
   useEffect(() => {
     dispatch(getDoctors());
     handleResize();
+
+    if (localStorage.getItem('load') === 'false') {
+      dispatch(getDoctors());
+      window.location.reload();
+
+      localStorage.setItem('load', 'true');
+    }
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch]);
@@ -49,13 +61,18 @@ const Home = () => {
         <div>
           {doctors.map((doctor) => (
             <div key={doctor.id} className="doctor-info">
-              <Link to={`/${doctor.id}`} className="link">
-                <img className="photo" src={doctor.photo} alt={doctor.name} />
+              <Link to={`/doctor/${doctor.id}`} className="link">
+                <img
+                  className="photo"
+                  src={doctor.profile_pic}
+                  alt={doctor.name}
+                />
                 <h2>{doctor.name}</h2>
-                <p>{doctor.about}</p>
+                <p>{doctor.specialization}</p>
+                <p>{doctor.bio}</p>
                 <p>
                   Buy one hour of time with only $
-                  {doctor.price_hour}
+                  {doctor.consultation_fee}
                 </p>
               </Link>
             </div>
@@ -79,13 +96,18 @@ const Home = () => {
         >
           {doctors.map((doctor) => (
             <SwiperSlide className="doctor-info" key={doctor.id}>
-              <Link to={`/${doctor.id}`} className="link">
-                <img className="photo" src={doctor.photo} alt={doctor.name} />
+              <Link to={`/doctor/${doctor.id}`} className="link">
+                <img
+                  className="photo"
+                  src={doctor.profile_pic}
+                  alt={doctor.name}
+                />
                 <h2>{doctor.name}</h2>
-                <p>{doctor.about}</p>
+                <p>{doctor.specialization}</p>
+                <p>{doctor.bio}</p>
                 <p>
                   Buy one hour of time with only $
-                  {doctor.price_hour}
+                  {doctor.consultation_fee}
                 </p>
               </Link>
             </SwiperSlide>
