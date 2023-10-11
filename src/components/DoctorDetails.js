@@ -35,7 +35,7 @@ const DoctorDetails = () => {
         </div>
         <ul>
           <li>
-            Price per Hour: $
+            Consultation Fee/Hour: $
             {doctor.consultation_fee}
           </li>
           <li>
