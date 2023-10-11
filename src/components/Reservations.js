@@ -38,7 +38,7 @@ const Reservations = () => {
   }
   return (
     <div className="reservation-page">
-      <h1 className="reserve-title">All the Reservations</h1>
+      <h1 className="reserve-title">All the Appointments</h1>
       <Swiper
         navigation
         slidesPerView={1}
