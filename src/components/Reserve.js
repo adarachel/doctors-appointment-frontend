@@ -59,6 +59,13 @@ const Reservation = () => {
       <form onSubmit={submit}>
         <h2>Make a reservation with us</h2>
         <input
+          type="username"
+          name="username"
+          defaultValue={user}
+          readOnly
+          placeholder="Username"
+        />
+        <input
           type="city"
           name="city"
           value={reserve.city}

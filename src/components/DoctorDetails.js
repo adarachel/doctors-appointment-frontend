@@ -13,7 +13,6 @@ const DoctorDetails = () => {
   }, [dispatch, doctorId]);
 
   const doctor = useSelector((state) => state.doctors.doctor);
-  console.log(doctor);
   return (
     <section className="container">
       <div className="dimg-desktop">
