@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    localStorage.removeItem('jwtToken');
+    localStorage.clear();
     window.location.href = '/';
   };
 
@@ -72,26 +72,36 @@ const Sidebar = () => {
                     Appointments
                   </Link>
                 </li>
+                {localStorage.getItem('admin') === 'true' && (
+                  <li className="sidebar-link">
+                    <Link
+                      onClick={() => setActiveNav('adddoctor')}
+                      className={activeNav === 'adddoctor' ? 'active' : ''}
+                      to="/add_doctor"
+                    >
+                      Add Doctor
+                    </Link>
+                  </li>
+                )}
+
+                {localStorage.getItem('admin') === 'true' && (
+                  <li className="sidebar-link">
+                    <Link
+                      onClick={() => setActiveNav('delete')}
+                      className={activeNav === 'delete' ? 'active' : ''}
+                      to="/delete"
+                    >
+                      Del Doctor
+                    </Link>
+                  </li>
+                )}
+
                 <li className="sidebar-link">
-                  <Link
-                    onClick={() => setActiveNav('adddoctor')}
-                    className={activeNav === 'adddoctor' ? 'active' : ''}
-                    to="/add_doctor"
+                  <button
+                    type="submit"
+                    onClick={handleLogout}
+                    className="logout-btn"
                   >
-                    Add Doctor
-                  </Link>
-                </li>
-                <li className="sidebar-link">
-                  <Link
-                    onClick={() => setActiveNav('delete')}
-                    className={activeNav === 'delete' ? 'active' : ''}
-                    to="/delete"
-                  >
-                    Del Doctor
-                  </Link>
-                </li>
-                <li className="sidebar-link">
-                  <button type="submit" onClick={handleLogout} className="logout-btn">
                     logout
                   </button>
                 </li>

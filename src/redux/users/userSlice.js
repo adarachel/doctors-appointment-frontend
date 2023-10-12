@@ -7,12 +7,14 @@ export const signupUser = createAsyncThunk('user/signupUser', async (user) => {
       'https://doctors-appointment-0mkx.onrender.com/signup',
       user,
     );
-    const token = response.headers.authorization.split(' ')[1];
-    const { username } = response.data.status.data.user;
-    localStorage.removeItem('jwtToken');
 
-    localStorage.setItem('jwtToken', token);
+    const token = response.headers.authorization.split(' ')[1];
+    const { username, admin } = response.data.data.user;
+    localStorage.removeItem('jwtToken');
     localStorage.setItem('username', username);
+    localStorage.setItem('admin', admin);
+    localStorage.setItem('jwtToken', token);
+
     return response.data;
   } catch (error) {
     throw new Error(error.message);
@@ -26,9 +28,10 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
     );
 
     const token = response.headers.authorization.split(' ')[1];
-    const { username } = response.data.status.data.user;
+    const { username, admin } = response.data.data.user;
     localStorage.removeItem('jwtToken');
     localStorage.setItem('username', username);
+    localStorage.setItem('admin', admin);
     localStorage.setItem('jwtToken', token);
 
     return response.data;
@@ -44,7 +47,8 @@ export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
         Authorization: `Bearer ${localStorage.getItem('jwtToken')}`,
       },
     });
-    localStorage.removeItem('jwtToken');
+    // localStorage.removeItem('jwtToken');
+    localStorage.clear();
     return true;
   } catch (error) {
     throw new Error(error.message);
