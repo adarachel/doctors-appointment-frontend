@@ -21,7 +21,7 @@ const Login = () => {
       };
 
       if (adminKey) {
-        userObj.adminKey = adminKey;
+        userObj.admin_key = adminKey;
       }
       localStorage.setItem('load', false);
       await dispatch(loginUser({ user: userObj }));
