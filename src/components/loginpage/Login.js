@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../../redux/users/userSlice';
 
@@ -7,6 +7,8 @@ import './login.css';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const isloading = useSelector((state) => state.user.pending);
+
   const navigate = useNavigate();
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +34,14 @@ const Login = () => {
     }
   };
 
+  if (isloading === true) {
+    return (
+      <div className="custom-loader">
+        .
+      </div>
+    );
+  }
+
   return (
     <div className="login-page">
       <div className="login-container">
@@ -48,6 +58,7 @@ const Login = () => {
           <input
             type="text"
             value={login}
+            className="input"
             onChange={(e) => setLogin(e.target.value)}
             placeholder="Username or email"
             required
@@ -55,6 +66,7 @@ const Login = () => {
           <input
             type="password"
             value={password}
+            className="input"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
@@ -62,6 +74,7 @@ const Login = () => {
           <input
             type="text"
             value={adminKey}
+            className="input"
             onChange={(e) => setAdminKey(e.target.value)}
             placeholder="Admin Key"
           />
