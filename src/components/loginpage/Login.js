@@ -48,6 +48,7 @@ const Login = () => {
           <input
             type="text"
             value={login}
+            className="input"
             onChange={(e) => setLogin(e.target.value)}
             placeholder="Username or email"
             required
@@ -55,6 +56,7 @@ const Login = () => {
           <input
             type="password"
             value={password}
+            className="input"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
@@ -62,6 +64,7 @@ const Login = () => {
           <input
             type="text"
             value={adminKey}
+            className="input"
             onChange={(e) => setAdminKey(e.target.value)}
             placeholder="Admin Key"
           />
