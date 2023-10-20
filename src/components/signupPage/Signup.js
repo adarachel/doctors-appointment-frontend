@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { signupUser } from '../../redux/users/userSlice';
 
@@ -51,6 +52,7 @@ const Signup = () => {
           {/* Full Name */}
           <input
             type="text"
+            className="input"
             value={name}
             onChange={(e) => setname(e.target.value)}
             placeholder="Full Name"
@@ -60,6 +62,7 @@ const Signup = () => {
           {/* Username */}
           <input
             type="text"
+            className="input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
@@ -69,6 +72,7 @@ const Signup = () => {
           {/* Email */}
           <input
             type="email"
+            className="input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
@@ -78,6 +82,7 @@ const Signup = () => {
           {/* Password */}
           <input
             type="password"
+            className="input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
@@ -87,6 +92,7 @@ const Signup = () => {
           {/* Confirm Password */}
           <input
             type="password"
+            className="input"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
@@ -96,6 +102,10 @@ const Signup = () => {
           {error && <p>{error}</p>}
           <button type="submit">Sign Up</button>
         </form>
+        <p>
+          Already have an account?
+          <Link to="/login">Log in</Link>
+        </p>
       </div>
     </div>
   );
