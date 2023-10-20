@@ -6,6 +6,7 @@ import { signupUser } from '../../redux/users/userSlice';
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const isloading = useSelector((state) => state.user.pending);
   const error = useSelector((state) => state.user.error);
   const [name, setname] = useState('');
   const [username, setUsername] = useState('');
@@ -43,6 +44,14 @@ const Signup = () => {
     setPassword('');
     setConfirmPassword('');
   };
+
+  if (isloading === true) {
+    return (
+      <div className="custom-loader">
+        .
+      </div>
+    );
+  }
 
   return (
     <div className="login-page">
