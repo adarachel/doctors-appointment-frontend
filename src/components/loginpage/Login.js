@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../../redux/users/userSlice';
 
@@ -7,6 +7,8 @@ import './login.css';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const isloading = useSelector((state) => state.user.pending);
+
   const navigate = useNavigate();
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -31,6 +33,14 @@ const Login = () => {
       // Handle login failure (you can display an error message)
     }
   };
+
+  if (isloading === true) {
+    return (
+      <div className="custom-loader">
+        .
+      </div>
+    );
+  }
 
   return (
     <div className="login-page">

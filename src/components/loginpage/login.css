@@ -55,3 +55,26 @@ p {
     max-width: 100%;
   }
 }
+
+.custom-loader {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+
+  /* transform: translate(-50%, -50%); */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #4a3fe3 94%, #0000) top/8px 8px
+    no-repeat,
+    conic-gradient(#0000 30%, #4a3fe3);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
