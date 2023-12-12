@@ -29,7 +29,8 @@
 .reservation-info {
   flex-direction: column;
   width: 250px;
-  height: 450px;
+  font-size: 14px;
+  height: auto;
   background-color: white;
   padding: 1rem;
   border-radius: 1rem;
@@ -60,7 +61,7 @@
   }
 
   .photo {
-    width: 60%;
+    width: 30%;
   }
 
   .reservation-imag {

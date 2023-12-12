@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import {
   BrowserRouter, Routes, Route, useLocation,
@@ -26,6 +25,9 @@ const AppContent = () => {
   const isLoginPage = location.pathname === '/login';
   const isSignupPage = location.pathname === '/signup';
 
+  // Check if the user is an admin based on localStorage
+  const isAdmin = localStorage.getItem('admin') === 'true';
+
   const renderSidebar = !isLoginPage && !isSignupPage;
 
   return (
@@ -36,12 +38,18 @@ const AppContent = () => {
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
         <Route path="/home" element={<Private><Home /></Private>} />
-        <Route path="/add_doctor" element={<Private><AddDoctor /></Private>} />
-        <Route path="/delete" element={<Private><DeleteDoctor /></Private>} />
+
+        {isAdmin && (
+          <>
+            <Route path="/add_doctor" element={<Private><AddDoctor /></Private>} />
+            <Route path="/delete" element={<Private><DeleteDoctor /></Private>} />
+          </>
+        )}
+
         <Route path="/doctor/:doctorId" element={<Private><DoctorDetails /></Private>} />
 
-        <Route path="reserveform" element={<Private><Reserve /></Private>} />
-        <Route path="myreservations" element={<Private><Reservations /></Private>} />
+        <Route path="appointment_form" element={<Private><Reserve /></Private>} />
+        <Route path="appointments" element={<Private><Reservations /></Private>} />
       </Routes>
     </>
   );

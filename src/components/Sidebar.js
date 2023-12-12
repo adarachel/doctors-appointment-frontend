@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    localStorage.removeItem('jwtToken');
+    localStorage.clear();
     window.location.href = '/';
   };
 
@@ -58,7 +58,7 @@ const Sidebar = () => {
                   <Link
                     onClick={() => setActiveNav('reserveform')}
                     className={activeNav === 'reserveform' ? 'active' : ''}
-                    to="/reserveform"
+                    to="/appointment_form"
                   >
                     New Appointment
                   </Link>
@@ -67,47 +67,43 @@ const Sidebar = () => {
                   <Link
                     onClick={() => setActiveNav('myreservations')}
                     className={activeNav === 'myreservations' ? 'active' : ''}
-                    to="/myreservations"
+                    to="/appointments"
                   >
                     Appointments
                   </Link>
                 </li>
-                <li className="sidebar-link">
-                  <Link
-                    onClick={() => setActiveNav('adddoctor')}
-                    className={activeNav === 'adddoctor' ? 'active' : ''}
-                    to="/add_doctor"
-                  >
-                    Add Doctor
-                  </Link>
-                </li>
-                <li className="sidebar-link">
-                  <Link
-                    onClick={() => setActiveNav('delete')}
-                    className={activeNav === 'delete' ? 'active' : ''}
-                    to="/delete"
-                  >
-                    Del Doctor
-                  </Link>
-                </li>
+                {localStorage.getItem('admin') === 'true' && (
+                  <li className="sidebar-link">
+                    <Link
+                      onClick={() => setActiveNav('adddoctor')}
+                      className={activeNav === 'adddoctor' ? 'active' : ''}
+                      to="/add_doctor"
+                    >
+                      Add Doctor
+                    </Link>
+                  </li>
+                )}
 
-                <li
-                  className="sidebar-link"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <lord-icon
-                    src="https://cdn.lordicon.com/hcuxerst.json"
-                    trigger="hover"
-                    colors="primary:#16c72e,secondary:#242424"
-                    style={{ width: '60px', height: '60px' }}
+                {localStorage.getItem('admin') === 'true' && (
+                  <li className="sidebar-link">
+                    <Link
+                      onClick={() => setActiveNav('delete')}
+                      className={activeNav === 'delete' ? 'active' : ''}
+                      to="/delete"
+                    >
+                      Del Doctor
+                    </Link>
+                  </li>
+                )}
+
+                <li className="sidebar-link">
+                  <button
+                    type="submit"
                     onClick={handleLogout}
-                  />
-                  logout
+                    className="logout-btn"
+                  >
+                    logout
+                  </button>
                 </li>
               </ul>
             </div>

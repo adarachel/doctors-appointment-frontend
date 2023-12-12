@@ -9,7 +9,12 @@ body {
 .sidebar_container {
   flex-direction: column;
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgb(184, 253, 119) 100%);
+  background:
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgb(184, 253, 119) 100%
+    );
   height: 100vh;
   justify-content: space-between;
   width: 200px;
@@ -87,6 +92,18 @@ small {
 
 .nav_btn {
   display: none;
+}
+
+.logout-btn {
+  display: flex;
+  border: none;
+  width: 120px;
+  background-color: rgb(182, 49, 49);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 2px 20px;
+  margin-top: 2.5rem;
 }
 
 @media (max-width: 768px) {

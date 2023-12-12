@@ -1,85 +1,80 @@
-body {
-  padding: 0;
-}
-
 .login-page {
-  width: 100%;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.login-page h2 {
-  font-size: 30px;
-  font-weight: 400;
-  margin-top: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #000;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  background-color: #f4f4f4;
+  width: 100%;
 }
 
 .login-container {
-  background-color: white;
-  height: 60%;
-  width: 45%;
-  border-radius: 15px;
-  border: 1px solid #08ad08;
-}
-
-.login-container form {
-  height: 70%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
 }
 
-.login-container input {
-  width: 60%;
-  padding: 0.8rem;
-  border-radius: 10px;
-  border: 2px solid #08ad08;
+.login-title {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.login-container button {
-  background-color: rgb(8, 173, 8);
-  color: white;
-  padding: 10px 20px;
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #16c72e;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-size: 18px;
   cursor: pointer;
-  width: 30%;
 }
 
-.login-container button:hover {
-  background-color: rgb(4, 105, 4);
+p {
+  margin-top: 20px;
+  font-size: 16px;
 }
 
-.login-container p {
-  text-align: center;
-}
-
-.login-container p a:hover {
-  color: blue;
-  transform: scale(1.05);
-  transition: all 0.2s ease-in-out;
-}
-
-.error-message {
-  color: red;
-}
-
-@media (max-width: 500px) {
+/* Media Query for Mobile */
+@media (max-width: 768px) {
   .login-container {
-    background-color: white;
-    height: 70%;
-    width: 95%;
-    border-radius: 15px;
-    border: 1px solid #08ad08;
+    max-width: 100%;
+  }
+}
+
+.custom-loader {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+
+  /* transform: translate(-50%, -50%); */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #4a3fe3 94%, #0000) top/8px 8px
+    no-repeat,
+    conic-gradient(#0000 30%, #4a3fe3);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
   }
 }
