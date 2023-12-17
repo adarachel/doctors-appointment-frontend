@@ -57,7 +57,7 @@ const Reservation = () => {
     <div className="container-2">
       <h1 className="heading">Book an Appointment for a Doctor</h1>
       <form onSubmit={submit}>
-        <h2>Make an appointment with us</h2>
+        <h2 className="form-h2">🏡 Make an appointment 🎀 </h2>
         <input
           type="username"
           name="username"
@@ -85,7 +85,7 @@ const Reservation = () => {
           name="time"
           value={reserve.time}
           onChange={handleInputChange}
-          placeholder="Time Duration"
+          placeholder="Time Duration in Minutes"
         />
 
         <div className="select-container">
