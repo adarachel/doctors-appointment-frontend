@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../../redux/users/userSlice';
@@ -36,8 +37,9 @@ const Login = () => {
 
   if (isloading === true) {
     return (
-      <div className="custom-loader">
-        .
+      <div className="log-load">
+        <FaSpinner className="custom-loader" />
+        <div className="loading"> ⚙️ SETTING UP PLEASE WAIT..........</div>
       </div>
     );
   }
