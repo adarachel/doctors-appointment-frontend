@@ -36,7 +36,7 @@
 button {
   width: 100%;
   padding: 10px;
-  background-color: #16c72e;
+  background-color: #209e31;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -53,6 +53,10 @@ p {
 @media (max-width: 768px) {
   .login-container {
     max-width: 100%;
+  }
+
+  .loading {
+    font-size: 20px;
   }
 }
 
@@ -85,4 +89,5 @@ p {
   color: linear-gradient(to left, #cacaca, #7bc9da);
   font-size: 30px;
   font-family: "Courier New", Courier, monospace;
+  text-align: center;
 }

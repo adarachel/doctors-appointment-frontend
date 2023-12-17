@@ -9,11 +9,7 @@ body {
 .sidebar_container {
   flex-direction: column;
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgb(184, 253, 119) 100%
-  );
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, #16c72e 100%);
   height: 100vh;
   justify-content: space-between;
   width: 200px;
@@ -56,7 +52,7 @@ body {
 .sidebar-link:hover {
   opacity: 0.8;
   transition: all 0.5s ease;
-  background: #96bf01;
+  background: #b5efbc;
   cursor: pointer;
   color: black;
   border-radius: 0.2rem;
