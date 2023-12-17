@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
@@ -47,8 +48,9 @@ const Signup = () => {
 
   if (isloading === true) {
     return (
-      <div className="custom-loader">
-        .
+      <div className="log-load">
+        <FaSpinner className="custom-loader" />
+        <div className="loading"> ⚙️ SETTING UP PLEASE WAIT..........</div>
       </div>
     );
   }
