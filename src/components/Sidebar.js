@@ -2,9 +2,13 @@ import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, Link } from 'react-router-dom';
 import {
-  FaTwitter, FaFacebookF, FaVine, FaPinterestP,
-  FaBars, FaTimes,
+  FaTwitter,
+  FaFacebookF,
+  FaVine,
+  FaPinterestP,
+  FaTimes,
 } from 'react-icons/fa';
+import { VscThreeBars } from 'react-icons/vsc';
 import { TiSocialGooglePlus } from 'react-icons/ti';
 import { logoutUser } from '../redux/users/userSlice';
 import logo from './assets/logo.png';
@@ -28,7 +32,7 @@ const Sidebar = () => {
     <>
       {' '}
       <button className="nav_btn" type="button" onClick={showNavbar}>
-        <FaBars />
+        <VscThreeBars className="bar" />
       </button>
       <div ref={navRef} className="sidebar_container_items">
         <div className="sidebar_container flex">
