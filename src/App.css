@@ -15,6 +15,7 @@ a {
   display: block !important;
   padding: 8px !important;
 }
+
 .home {
   display: flex;
   flex-direction: column;
@@ -131,6 +132,7 @@ a {
 
 .spinner {
   font-size: 100px;
+
   /* transform: translate(-50%, -50%); */
   animation-name: spin;
   animation-duration: 2000ms;
@@ -142,6 +144,7 @@ a {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -173,6 +176,7 @@ a {
     font-size: 30px;
     margin-left: 40px;
   }
+
   .Home-container {
     flex-direction: column;
     width: 100%;
@@ -206,7 +210,7 @@ a {
     height: max-content;
     padding: 20px;
     text-align: center;
-    box-shadow: 8px 0px 15px 5px #bebebe;
+    box-shadow: 8px 0 15px 5px #bebebe;
     border-radius: 0.6rem;
     margin-bottom: 1.5rem;
   }

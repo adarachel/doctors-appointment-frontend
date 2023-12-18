@@ -86,7 +86,6 @@ p {
 }
 
 .loading {
-  color: linear-gradient(to left, #cacaca, #7bc9da);
   font-size: 30px;
   font-family: "Courier New", Courier, monospace;
   text-align: center;

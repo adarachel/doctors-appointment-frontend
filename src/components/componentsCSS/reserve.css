@@ -7,12 +7,14 @@
 .container-2 {
   padding: 20px;
   background-color: white;
+
   /* border-radius: 2rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 2rem;
+
   /* margin: 1.1rem; */
 }
 
@@ -29,9 +31,7 @@
   font-weight: bold;
   margin-top: 20px;
   text-align: center;
-  background-color: #209e31;
   background: linear-gradient(271deg, #5f8edf 0%, #5deb70 100%);
-
   padding: 1rem;
   color: white;
   border-radius: 1rem;

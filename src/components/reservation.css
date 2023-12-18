@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+
   /* justify-content: center; */
   align-items: center;
   padding: 10px 20px 40px;
@@ -9,7 +10,6 @@
 
 .reserve-title {
   text-align: center;
-  margin-bottom: 20px;
   background: linear-gradient(271deg, #5f8edf 0%, #5deb70 100%);
   font-size: 30px;
   font-weight: bold;
@@ -17,8 +17,7 @@
   padding: 10px 40px;
   border-radius: 10px;
   width: 90%;
-  text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
   overflow-x: hidden;
 }
 
@@ -42,6 +41,7 @@
   padding: 20px;
   max-width: 300px; /* Adjust the maximum width as needed */
   transition: transform 0.3s ease-in-out;
+
   &:hover {
     transform: scale(1.05);
   }

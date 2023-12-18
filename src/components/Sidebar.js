@@ -22,8 +22,6 @@ const Sidebar = () => {
     // Update the activeNav state after the component has rendered
     setActiveNav(location.pathname);
   }, [location.pathname]); // Only re-run the effect when location.pathname changes
-
-  console.log(activeNav);
   const navRef = useRef();
   const showNavbar = () => {
     navRef.current.classList.toggle('responsive');
