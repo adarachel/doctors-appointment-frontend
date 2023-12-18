@@ -65,10 +65,7 @@ const Reservations = () => {
                     src={doctor.profile_pic}
                     alt={doctor.name}
                   />
-                  <h2 className="text-center">
-                    Dr.
-                    {doctor.name}
-                  </h2>
+                  <h2 className="text-center">{doctor.name}</h2>
                 </div>
               ))}
             <div className="reserve-details">
