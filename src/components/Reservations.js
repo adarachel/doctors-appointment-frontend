@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
 import { getReserve } from '../redux/reservations/reservationsSlice';
 import { getDoctors } from '../redux/doctors/doctorsSlice';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './reservation.css';
 
@@ -18,10 +12,12 @@ const Reservations = () => {
   );
   const redoctors = useSelector((store) => store.doctors.doctors);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getReserve());
     dispatch(getDoctors());
   }, [dispatch]);
+
   if (isLoading) {
     return (
       <div className="log-load">
@@ -30,13 +26,13 @@ const Reservations = () => {
       </div>
     );
   }
+
   if (error) {
     return (
       <div className="error-container">
         <h2>
           {' '}
-          ⚠️ Oops! somethings went wrong.
-          {' '}
+          ⚠️ Oops! Something went wrong.
           <br />
           {' '}
           Please try again!
@@ -45,36 +41,17 @@ const Reservations = () => {
       </div>
     );
   }
+
   return (
     <div className="reservation-page">
       <h1 className="reserve-title">All the Appointments</h1>
-      <Swiper
-        navigation
-        slidesPerView={1}
-        spaceBetween={60}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          600: {
-            slidesPerView: 2,
-          },
-          1204: {
-            slidesPerView: 3,
-          },
-        }}
-        modules={[Navigation, Pagination]}
-        className="mySwiper"
-      >
+      <div className="card-container">
         {reservations.map((reservation) => (
-          <SwiperSlide
-            className="reservation-info reservation-card flex"
-            key={reservation.id}
-          >
+          <div className="card" key={reservation.id}>
             {redoctors
               .filter((value) => value.id === reservation.doctor_id)
               .map((doctor) => (
-                <div className="reservation-imag flex" key={doctor.id}>
+                <div className="reservation-imag" key={doctor.id}>
                   <img
                     className="photo"
                     src={doctor.profile_pic}
@@ -101,9 +78,8 @@ const Reservations = () => {
                 {' '}
                 hours
               </p>
-
               <p>
-                <strong>Facility_Fee:&ensp;</strong>
+                <strong>Facility Fee:&ensp;</strong>
                 $
                 {reservation.facility_fee}
               </p>
@@ -126,10 +102,11 @@ const Reservations = () => {
                   </div>
                 ))}
             </div>
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };
+
 export default Reservations;
