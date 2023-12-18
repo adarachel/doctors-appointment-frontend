@@ -1,5 +1,8 @@
 /* componentsCSS/details.css */
 
+.details {
+  margin: auto;
+}
 .doctor-container {
   display: flex;
   flex-direction: row;
@@ -7,20 +10,29 @@
   align-items: center;
   gap: 40px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 20px;
   overflow: hidden;
   width: 100%;
   height: auto;
-  padding: 20px;
+  padding: 40px;
   transition: transform 0.3s ease-in-out;
-  /* background-color: yellow; */
+  background: linear-gradient(180deg, #ffffff 0%, #d9ffde 100%);
 }
 
 .doctor-image {
-  width: 300px;
-  height: 300px;
-  border: 5px double rgb(146, 144, 141);
+  width: 250px;
+  height: 250px;
+  border: 5px double rgb(152 232 183);
   border-radius: 10px;
+  padding: 4px;
+  box-shadow: -1px 0px 12px 0px #423c3c;
+}
+
+.doctor-de {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 10px;
 }
 
 .d-name {
@@ -28,17 +40,47 @@
   margin-bottom: 10px;
   font-weight: 700;
   color: rgb(111 111 111);
+  text-shadow: 2px 1px 3px #565656;
 }
 
 .d-ul {
-  font-size: 20px;
+  font-size: 18px;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: 800;
   opacity: 0.8;
   margin-bottom: 10px;
   text-decoration: none;
+  text-align: left;
+  margin-left: -32px;
 }
 
 .d-li {
   text-decoration: none;
+  list-style: none;
+  word-wrap: normal;
+}
+
+.reserve-button {
+  color: #fff;
+  box-shadow: -1px 0px 12px 0px #423c3c;
+}
+
+.data {
+  font-family: "monospace", initial;
+  font-size: 14px;
+  color: #696e6e;
+}
+
+@media (max-width: 768px) {
+  .doctor-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 30px;
+  }
+
+  .details {
+    margin: 35px auto;
+  }
 }

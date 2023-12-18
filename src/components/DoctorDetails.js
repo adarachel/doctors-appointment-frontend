@@ -14,34 +14,41 @@ const DoctorDetails = () => {
 
   const doctor = useSelector((state) => state.doctors.doctor);
   return (
-    <section className="doctor-container">
-      <div className="img-div">
-        <img
-          className="doctor-image"
-          src={doctor.profile_pic}
-          alt={doctor.name}
-        />
-      </div>
-      <div className="doctor-de">
-        <h2 className="d-name">{doctor.name}</h2>
+    <div className="details">
+      <div className="doctor-container">
+        <div className="img-div">
+          <img
+            className="doctor-image"
+            src={doctor.profile_pic}
+            alt={doctor.name}
+          />
+        </div>
+        <div className="doctor-de">
+          <h2 className="d-name">{doctor.name}</h2>
 
-        <ul className="d-ul">
-          <li className="d-li">
-            Consultation Fee/Hour: $
-            {doctor.consultation_fee}
-          </li>
-          <li className="d-li">
-            Bio:
-            {doctor.bio}
-          </li>
-        </ul>
-        <button type="button" className="reserve-button">
-          <Link to="/appointment_form" className="reserve-button">
-            Reserve
-          </Link>
-        </button>
+          <ul className="d-ul">
+            <li className="d-li">
+              Consultation Fee/Hour:
+              <span className="data">
+                {' '}
+                $
+                {doctor.consultation_fee}
+              </span>
+            </li>
+            <li className="d-li">
+              Bio:
+              {' '}
+              <span className="data">{doctor.bio}</span>
+            </li>
+          </ul>
+          <button type="button" className="reserve-button">
+            <Link to="/appointment_form" className="reserve-button">
+              Reserve
+            </Link>
+          </button>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
