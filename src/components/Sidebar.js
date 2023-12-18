@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet, Link } from 'react-router-dom';
+import { useLocation, Outlet, Link } from 'react-router-dom';
 import {
   FaTwitter,
   FaFacebookF,
@@ -17,6 +17,13 @@ import './sidebar.css';
 const Sidebar = () => {
   const dispatch = useDispatch();
   const [activeNav, setActiveNav] = useState('/');
+  const location = useLocation();
+  useEffect(() => {
+    // Update the activeNav state after the component has rendered
+    setActiveNav(location.pathname);
+  }, [location.pathname]); // Only re-run the effect when location.pathname changes
+
+  console.log(activeNav);
   const navRef = useRef();
   const showNavbar = () => {
     navRef.current.classList.toggle('responsive');
@@ -51,8 +58,8 @@ const Sidebar = () => {
               <ul className="sidebar_list">
                 <li className="sidebar-link">
                   <Link
-                    onClick={() => setActiveNav('home')}
-                    className={activeNav === 'home' ? 'active' : ''}
+                    // onClick={() => setActiveNav('home')}
+                    className={activeNav === '/home' ? 'active' : ''}
                     to="/home"
                   >
                     Doctors
@@ -60,8 +67,10 @@ const Sidebar = () => {
                 </li>
                 <li className="sidebar-link">
                   <Link
-                    onClick={() => setActiveNav('reserveform')}
-                    className={activeNav === 'reserveform' ? 'active' : ''}
+                    // onClick={() => setActiveNav('reserveform')}
+                    className={
+                      activeNav === '/appointment_form' ? 'active' : ''
+                    }
                     to="/appointment_form"
                   >
                     New Appointment
@@ -69,8 +78,8 @@ const Sidebar = () => {
                 </li>
                 <li className="sidebar-link">
                   <Link
-                    onClick={() => setActiveNav('myreservations')}
-                    className={activeNav === 'myreservations' ? 'active' : ''}
+                    // onClick={() => setActiveNav('myreservations')}
+                    className={activeNav === '/appointments' ? 'active' : ''}
                     to="/appointments"
                   >
                     Appointments
@@ -79,8 +88,8 @@ const Sidebar = () => {
                 {localStorage.getItem('admin') === 'true' && (
                   <li className="sidebar-link">
                     <Link
-                      onClick={() => setActiveNav('adddoctor')}
-                      className={activeNav === 'adddoctor' ? 'active' : ''}
+                      // onClick={() => setActiveNav('adddoctor')}
+                      className={activeNav === '/add_doctor' ? 'active' : ''}
                       to="/add_doctor"
                     >
                       Add Doctor
@@ -91,8 +100,8 @@ const Sidebar = () => {
                 {localStorage.getItem('admin') === 'true' && (
                   <li className="sidebar-link">
                     <Link
-                      onClick={() => setActiveNav('delete')}
-                      className={activeNav === 'delete' ? 'active' : ''}
+                      // onClick={() => setActiveNav('delete')}
+                      className={activeNav === '/delete' ? 'active' : ''}
                       to="/delete"
                     >
                       Del Doctor
