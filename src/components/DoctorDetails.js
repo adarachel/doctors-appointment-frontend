@@ -14,38 +14,29 @@ const DoctorDetails = () => {
 
   const doctor = useSelector((state) => state.doctors.doctor);
   return (
-    <section className="container">
-      <div className="dimg-desktop">
+    <section className="doctor-container">
+      <div className="img-div">
         <img
+          className="doctor-image"
           src={doctor.profile_pic}
           alt={doctor.name}
-          // crossOrigin="anonymous | use-credentias"
         />
       </div>
-      <div className="dinfo">
-        <div className="dwrap">
-          <h1>{doctor.name}</h1>
-        </div>
-        <div className="dimg-mobile">
-          <img
-            src={doctor.profile_pic}
-            alt={doctor.name}
-            // crossOrigin="anonymous | use-credentias"
-          />
-        </div>
-        <ul>
-          <li>
+      <div className="doctor-de">
+        <h2 className="d-name">{doctor.name}</h2>
+
+        <ul className="d-ul">
+          <li className="d-li">
             Consultation Fee/Hour: $
             {doctor.consultation_fee}
           </li>
-          <li>
+          <li className="d-li">
             Bio:
-            {' '}
             {doctor.bio}
           </li>
         </ul>
-        <button type="button" className="rbtn">
-          <Link to="/appointment_form" className="rebtn">
+        <button type="button" className="reserve-button">
+          <Link to="/appointment_form" className="reserve-button">
             Reserve
           </Link>
         </button>

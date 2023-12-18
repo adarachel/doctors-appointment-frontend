@@ -1,94 +1,47 @@
-* {
-  padding: 0;
-  margin: 0;
-  font-family: "Trebuchet MS", sans-serif;
-}
+/* componentsCSS/details.css */
 
-.dimg-desktop {
-  display: none;
-}
-
-.dwrap {
-  font-size: 1rem;
+.doctor-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
   padding: 20px;
-  margin-top: 20px;
+  transition: transform 0.3s ease-in-out;
+  /* background-color: yellow; */
 }
 
-.dimg-mobile img {
-  margin: 20px;
-  width: 100vw;
-  height: 40vh;
+.img-div {
 }
 
-.container ul li {
-  margin-left: 20px;
-  margin-right: 20px;
-  list-style-type: none;
-  padding: 10px;
-  font-weight: 540;
+.doctor-image {
+  width: 300px;
+  height: 300px;
+  border: 5px double rgb(146, 144, 141);
+  border-radius: 10px;
 }
 
-.container ul li:nth-child(odd) {
-  background-color: rgb(211, 211, 211);
+.d-name {
+  font-size: 40px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: rgb(111 111 111);
 }
 
-.rbtn {
-  margin: 20px;
-  background-color: #70be0d;
+.d-ul {
+  font-size: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 800;
+  opacity: 0.8;
+  margin-bottom: 10px;
   text-decoration: none;
-  padding: 4px;
-  border-radius: 25px;
-  outline: none;
-  border: none;
 }
 
-/* for desktop */
-
-@media only screen and (min-width: 768px) {
-  .dimg-mobile {
-    display: none;
-  }
-
-  .dimg-desktop {
-    display: block;
-    margin-top: 7rem;
-  }
-
-  .dimg-desktop img {
-    margin: 20px;
-    width: 38rem;
-    height: 39rem;
-    border: 1px solid black;
-    border-radius: 2rem;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 40px;
-  }
-
-  .dwrap {
-    text-align: right;
-  }
-
-  .container ul li {
-    width: 20rem;
-    margin-left: 80px;
-  }
-
-  .dinfo {
-    margin-top: 5rem;
-  }
-
-  .rbtn {
-    padding: 5px 10px 5px 10px;
-    border-radius: 25px;
-    margin-left: 18.5rem;
-  }
-
-  .rebtn {
-    font-size: 1rem;
-  }
+.d-li {
+  text-decoration: none;
 }

@@ -46,7 +46,7 @@ const Reservation = () => {
     try {
       // Dispatch the createReserve action to make the reservation request
       await dispatch(createReserve(reserve));
-      alert('✅ Reservation created successfully!');
+      alert('✅ Appointment created successfully!');
       navigate('/appointments'); // Redirect to the reservation page after successful reservation
     } catch (error) {
       alert('Error occurred while making a reservation.');
