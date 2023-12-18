@@ -226,3 +226,13 @@ a {
 .reserve-details p {
   margin: 5px 0;
 }
+
+.error-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

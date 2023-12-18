@@ -51,7 +51,14 @@ const Home = () => {
   if (error) {
     return (
       <div className="error-container">
-        <h2>Oopps somethings went wrong.PLease try again!</h2>
+        <h2>
+          {' '}
+          ⚠️ Oops! somethings went wrong.
+          {' '}
+          <br />
+          {' '}
+          Please try again!
+        </h2>
         <p>{error}</p>
       </div>
     );

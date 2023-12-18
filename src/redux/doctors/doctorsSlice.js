@@ -28,8 +28,12 @@ const axiosInstance = axios.create({
 export const addDoctor = createAsyncThunk(
   'doctor/addDoctor',
   async (doctorData) => {
-    const response = await axiosInstance.post('/doctors', doctorData);
-    return response.data;
+    try {
+      const response = await axiosInstance.post('/doctors', doctorData);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.error);
+    }
   },
 );
 
@@ -39,7 +43,7 @@ export const getDoctors = createAsyncThunk('doctors/getDoctors', async () => {
 
     return response.data;
   } catch (error) {
-    return error.response.data.error;
+    throw new Error(error.response.data.error);
   }
 });
 
@@ -51,7 +55,7 @@ export const getDoctor = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      throw error.response.data.error;
+      throw new Error(error.response.data.error);
     }
   },
 );
@@ -63,7 +67,7 @@ export const deleteDoctor = createAsyncThunk(
       await axiosInstance.delete(`/doctors/${doctorId}`);
       return doctorId;
     } catch (error) {
-      throw error.response.data.error;
+      throw new Error(error.response.data.error);
     }
   },
 );
@@ -80,10 +84,10 @@ export const doctorsSlice = createSlice({
         isLoading: false,
         doctors: action.payload,
       }))
-      .addCase(getDoctors.rejected, (state, action) => ({
+      .addCase(getDoctors.rejected, (state) => ({
         ...state,
         isLoading: false,
-        error: action.payload,
+        error: true,
       }))
       .addCase(getDoctor.pending, (state) => ({ ...state, isLoading: true }))
       .addCase(getDoctor.fulfilled, (state, action) => ({
@@ -102,10 +106,10 @@ export const doctorsSlice = createSlice({
           doctors: updatedDoctors,
         };
       })
-      .addCase(deleteDoctor.rejected, (state, action) => ({
+      .addCase(deleteDoctor.rejected, (state) => ({
         ...state,
         isLoading: false,
-        error: action.payload,
+        error: true,
       }))
       .addCase(addDoctor.pending, (state) => {
         state.status = 'loading';
@@ -114,9 +118,9 @@ export const doctorsSlice = createSlice({
         state.status = 'succeeded';
         state.doctors.push(action.payload);
       })
-      .addCase(addDoctor.rejected, (state, action) => {
+      .addCase(addDoctor.rejected, (state) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        state.error = true;
       });
   },
 });
