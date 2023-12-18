@@ -27,6 +27,7 @@
   border-radius: 10px;
   padding: 4px;
   box-shadow: -1px 0 12px 0 #423c3c;
+  object-fit: cover;
 }
 
 .doctor-de {

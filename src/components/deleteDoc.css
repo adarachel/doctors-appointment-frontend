@@ -14,7 +14,7 @@
 
 .delete-doctor {
   width: 100%;
-  height: fit-content;
+  height: auto;
   max-height: 95vh;
   display: flex;
   flex-direction: row;
@@ -36,6 +36,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
   /* height: 200px; */
   box-shadow: 0 4px 4px rgba(43, 43, 43, 0.1);
   transition: box-shadow 0.3s ease;
@@ -47,9 +48,11 @@
 }
 
 .deldoc-info .photo {
-  width: 100px;
+  min-width: 100px;
+  max-width: 101px;
   height: 100px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .deldoc-name {

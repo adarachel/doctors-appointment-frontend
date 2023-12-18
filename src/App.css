@@ -94,6 +94,7 @@ a {
   padding: 5px;
   border: 4px dotted#ffffff5c;
   margin-bottom: 10px;
+  object-fit: cover;
 }
 
 .doctor-info h2 {
