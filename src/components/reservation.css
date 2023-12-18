@@ -1,89 +1,94 @@
 .reservation-page {
-  width: 85%;
-  padding: 1rem;
-  overflow-x: hidden;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  margin-top: 0 !important;
+  padding: 10px 20px 40px;
 }
 
 .reserve-title {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 1rem;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(271deg, #5f8edf 0%, #5deb70 100%);
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 40px;
+  border-radius: 10px;
   width: 90%;
   text-align: center;
   margin-bottom: 1rem;
   overflow-x: hidden;
 }
 
-.reservation-imag {
-  flex-direction: column;
-  align-items: center !important;
-  justify-content: center !important;
+.card-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+  row-gap: 40px;
 }
 
-.reservation-info {
+.card {
+  display: flex;
   flex-direction: column;
-  width: 250px;
-  font-size: 14px;
-  height: auto;
-  background-color: white;
-  padding: 1rem;
-  border-radius: 1rem;
-  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  padding: 20px;
+  max-width: 300px; /* Adjust the maximum width as needed */
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.reservation-imag {
+  text-align: center;
+  padding: 10px;
 }
 
 .photo {
-  width: 100%;
-  margin-bottom: 1rem;
-  height: 200px;
-  border: none;
-  border-radius: 15px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  border-radius: 50%;
+  padding: 5px;
+  border: 4px dotted#d7d7d7d1;
+}
+
+.text-center {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: rgb(181 176 176);
+  text-align: center;
 }
 
 .reserve-details {
-  width: 100%;
+  padding: 15px;
 }
 
-@media (max-width: 600px) {
-  .reservation-page {
-    width: 100%;
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none;
-  }
-
-  .photo {
-    width: 30%;
-  }
-
-  .reservation-imag {
-    flex-direction: column;
-    align-items: center !important;
-    justify-content: center !important;
-  }
+.reserve-details p {
+  margin: 0;
+  color: #1e3c49;
+  font-family: monospace, cursive, circular;
+  font-size: 18px;
+  word-wrap: normal;
 }
 
 @media (max-width: 768px) {
   .reservation-page {
-    width: 100%;
+    padding-top: 9.5px;
   }
 
-  .reservation-imag {
-    flex-direction: column;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none;
+  .reserve-title {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
   }
 }
