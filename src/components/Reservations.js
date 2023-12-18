@@ -18,6 +18,13 @@ const Reservations = () => {
     dispatch(getDoctors());
   }, [dispatch]);
 
+  const empty = () => {
+    if (reservations.length === 0) {
+      return <h3 className=""> 🥺 No Appointment Yet.</h3>;
+    }
+    return null;
+  };
+
   if (isLoading) {
     return (
       <div className="log-load">
@@ -44,7 +51,8 @@ const Reservations = () => {
 
   return (
     <div className="reservation-page">
-      <h1 className="reserve-title">All the Appointments</h1>
+      <h1 className="reserve-title">Appointments</h1>
+      {empty()}
       <div className="card-container">
         {reservations.map((reservation) => (
           <div className="card" key={reservation.id}>
