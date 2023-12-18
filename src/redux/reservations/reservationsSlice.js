@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const API_BASE = 'https://doctors-appointment-0mkx.onrender.com/api/v1/';
+const API_BASE = "https://doctors-appointment-0mkx.onrender.com/api/v1/";
 
 const gettoken = () => {
-  const jwtToken = localStorage.getItem('jwtToken');
+  const jwtToken = localStorage.getItem("jwtToken");
 
   return jwtToken;
 };
@@ -17,7 +17,7 @@ const axiosInstance = axios.create({
 });
 
 export const createReserve = createAsyncThunk(
-  'reserve/createReserve',
+  "reserve/createReserve",
   async (payload) => {
     const ree = {
       appointment_date: payload.date,
@@ -27,43 +27,60 @@ export const createReserve = createAsyncThunk(
     };
 
     try {
-      const response = await axiosInstance.post('/appointments', ree);
+      const response = await axiosInstance.post("/appointments", ree);
 
       return response.data;
     } catch (error) {
-      throw new Error('Error occured try again');
+      throw new Error("Error occurred, try again");
     }
-  },
+  }
 );
 
-export const getReserve = createAsyncThunk('reserve/getReserve', async () => {
+export const getReserve = createAsyncThunk("reserve/getReserve", async () => {
   try {
-    const response = await axiosInstance.get('/appointments');
+    const response = await axiosInstance.get("/appointments");
 
     return response.data;
   } catch (error) {
-    throw new Error('Error occured try again');
+    throw new Error("Error occurred, try again");
   }
 });
 
 const initialState = {
   reservations: [],
+  pending: false,
+  error: null,
   regsuccess: null,
 };
 
 const ReservationSlice = createSlice({
-  name: 'reserve',
+  name: "reserve",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(createReserve.pending, (state) => {
+      state.pending = true;
+    });
     builder.addCase(createReserve.fulfilled, (state, action) => {
+      state.pending = false;
       state.regsuccess = action.payload;
-      if (action.payload.token) {
-        localStorage.setItem('success', JSON.stringify(action.payload));
-      }
+    });
+    builder.addCase(createReserve.rejected, (state) => {
+      state.pending = false;
+      state.error = true;
+    });
+
+    builder.addCase(getReserve.pending, (state) => {
+      state.pending = true;
+      state.error = false;
     });
     builder.addCase(getReserve.fulfilled, (state, action) => {
       state.reservations = action.payload;
+      state.pending = false;
+      state.error = false;
+    });
+    builder.addCase(getReserve.rejected, (state) => {
+      state.error = true;
     });
   },
 });

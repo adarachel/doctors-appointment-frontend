@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
-import { getReserve } from '../redux/reservations/reservationsSlice';
-import { getDoctors } from '../redux/doctors/doctorsSlice';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import React, { useEffect } from "react";
+import { FaSpinner } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
+import { getReserve } from "../redux/reservations/reservationsSlice";
+import { getDoctors } from "../redux/doctors/doctorsSlice";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './reservation.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./reservation.css";
 
 const Reservations = () => {
   const { reservations, isLoading, error } = useSelector(
-    (store) => store.reservations,
+    (store) => store.reservations
   );
   const redoctors = useSelector((store) => store.doctors.doctors);
   const dispatch = useDispatch();
@@ -23,15 +24,19 @@ const Reservations = () => {
   }, [dispatch]);
   if (isLoading) {
     return (
-      <div className="loading">
-        <div className="spinner" />
+      <div className="log-load">
+        <FaSpinner className="spinner" />
+        <div className="loading"> 🛸 Loading.......</div>
       </div>
     );
   }
   if (error) {
     return (
       <div className="error-container">
-        <h2>Oops! somethings went wrong.Please try again!</h2>
+        <h2>
+          {" "}
+          ⚠️ Oops! somethings went wrong. <br /> Please try again!
+        </h2>
         <p>{error}</p>
       </div>
     );
@@ -58,7 +63,10 @@ const Reservations = () => {
         className="mySwiper"
       >
         {reservations.map((reservation) => (
-          <SwiperSlide className="reservation-info reservation-card flex" key={reservation.id}>
+          <SwiperSlide
+            className="reservation-info reservation-card flex"
+            key={reservation.id}
+          >
             {redoctors
               .filter((value) => value.id === reservation.doctor_id)
               .map((doctor) => (
@@ -81,34 +89,29 @@ const Reservations = () => {
               </p>
               <p>
                 <strong>Date:&ensp;</strong>
-                {reservation.appointment_date.split('T')[0]}
+                {reservation.appointment_date.split("T")[0]}
               </p>
               <p>
                 <strong>Time:&ensp;</strong>
-                {reservation.appointment_duration}
-                {' '}
-                hours
+                {reservation.appointment_duration} hours
               </p>
 
               <p>
-                <strong>Facility_Fee:&ensp;</strong>
-                $
-                {reservation.facility_fee}
+                <strong>Facility_Fee:&ensp;</strong>${reservation.facility_fee}
               </p>
               {redoctors
                 .filter((value) => value.id === reservation.doctor_id)
                 .map((doctor) => (
                   <div key={doctor.id}>
                     <p>
-                      <strong>Consultation Fee/Hour:&ensp;</strong>
-                      $
+                      <strong>Consultation Fee/Hour:&ensp;</strong>$
                       {doctor.consultation_fee}
                     </p>
                     <p>
-                      <strong>Total Reservation Fee:&ensp;</strong>
-                      $
-                      {(doctor.consultation_fee) * (reservation.appointment_duration)
-                      + parseFloat(reservation.facility_fee)}
+                      <strong>Total Reservation Fee:&ensp;</strong>$
+                      {doctor.consultation_fee *
+                        reservation.appointment_duration +
+                        parseFloat(reservation.facility_fee)}
                     </p>
                   </div>
                 ))}
