@@ -30,6 +30,8 @@
   margin-top: 20px;
   text-align: center;
   background-color: #209e31;
+  background: linear-gradient(271deg, #5f8edf 0%, #5deb70 100%);
+
   padding: 1rem;
   color: white;
   border-radius: 1rem;
