@@ -81,7 +81,7 @@ const Reservations = () => {
                 <strong>Time:&ensp;</strong>
                 {reservation.appointment_duration}
                 {' '}
-                hours
+                Minutes 🎯
               </p>
               <p>
                 <strong>Facility Fee:&ensp;</strong>
@@ -93,16 +93,15 @@ const Reservations = () => {
                 .map((doctor) => (
                   <div key={doctor.id}>
                     <p>
-                      <strong>Consultation Fee/Hour:&ensp;</strong>
+                      <strong>Consultation Fee:&ensp;</strong>
                       $
                       {doctor.consultation_fee}
                     </p>
                     <p>
-                      <strong>Total Reservation Fee:&ensp;</strong>
+                      <strong>Total Appointment Fee:&ensp;</strong>
                       $
-                      {doctor.consultation_fee
-                        * reservation.appointment_duration
-                        + parseFloat(reservation.facility_fee)}
+                      {parseInt(doctor.consultation_fee, 10)
+                        + parseInt(reservation.facility_fee, 10)}
                     </p>
                   </div>
                 ))}
