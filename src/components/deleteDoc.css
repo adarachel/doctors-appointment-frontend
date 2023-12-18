@@ -1,0 +1,77 @@
+.flex {
+  display: flex;
+}
+
+#root {
+  display: flex;
+}
+
+.center {
+  margin: auto;
+}
+
+/* new file for doctor deletion */
+
+.delete-doctor {
+  width: 100%;
+  height: fit-content;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  row-gap: 40px;
+  padding: 40px;
+}
+
+.deldoc-info {
+  width: 320px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  /* height: 200px; */
+  box-shadow: 0 4px 4px rgba(43, 43, 43, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.deldoc-info:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Updated values */
+  transition: box-shadow 0.5s ease;
+}
+
+.deldoc-info .photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.deldoc-name {
+  width: auto;
+  margin: 0;
+  font-size: 18px;
+  word-wrap: normal;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  width: 70px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 3px 3px #c1c5c4;
+}
+
+.delete-btn:hover {
+  background-color: #2e2c2c;
+  width: 80px;
+}

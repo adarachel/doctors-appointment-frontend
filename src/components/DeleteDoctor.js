@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
 import { deleteDoctor, getDoctors } from '../redux/doctors/doctorsSlice';
-import './componentsCSS/deleteDoctor.css';
+import './deleteDoc.css';
 
 const DeleteDoctor = () => {
   const { doctors, isLoading, error } = useSelector((store) => store.doctors);
