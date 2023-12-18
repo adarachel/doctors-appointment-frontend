@@ -9,8 +9,9 @@ export const signupUser = createAsyncThunk('user/signupUser', async (user) => {
     );
 
     const token = response.headers.authorization.split(' ')[1];
-    const { username, admin } = response.data.data.user;
+    const { username, admin, name } = response.data.data.user;
     localStorage.removeItem('jwtToken');
+    localStorage.setItem('name', name);
     localStorage.setItem('username', username);
     localStorage.setItem('admin', admin);
     localStorage.setItem('jwtToken', token);
@@ -28,8 +29,9 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user) => {
     );
 
     const token = response.headers.authorization.split(' ')[1];
-    const { username, admin } = response.data.data.user;
+    const { username, admin, name } = response.data.data.user;
     localStorage.removeItem('jwtToken');
+    localStorage.setItem('name', name);
     localStorage.setItem('username', username);
     localStorage.setItem('admin', admin);
     localStorage.setItem('jwtToken', token);

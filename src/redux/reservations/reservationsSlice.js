@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const API_BASE = "https://doctors-appointment-0mkx.onrender.com/api/v1/";
+const API_BASE = 'https://doctors-appointment-0mkx.onrender.com/api/v1/';
 
 const gettoken = () => {
-  const jwtToken = localStorage.getItem("jwtToken");
+  const jwtToken = localStorage.getItem('jwtToken');
 
   return jwtToken;
 };
@@ -17,7 +17,7 @@ const axiosInstance = axios.create({
 });
 
 export const createReserve = createAsyncThunk(
-  "reserve/createReserve",
+  'reserve/createReserve',
   async (payload) => {
     const ree = {
       appointment_date: payload.date,
@@ -27,22 +27,22 @@ export const createReserve = createAsyncThunk(
     };
 
     try {
-      const response = await axiosInstance.post("/appointments", ree);
+      const response = await axiosInstance.post('/appointments', ree);
 
       return response.data;
     } catch (error) {
-      throw new Error("Error occurred, try again");
+      throw new Error('Error occurred, try again');
     }
-  }
+  },
 );
 
-export const getReserve = createAsyncThunk("reserve/getReserve", async () => {
+export const getReserve = createAsyncThunk('reserve/getReserve', async () => {
   try {
-    const response = await axiosInstance.get("/appointments");
+    const response = await axiosInstance.get('/appointments');
 
     return response.data;
   } catch (error) {
-    throw new Error("Error occurred, try again");
+    throw new Error('Error occurred, try again');
   }
 });
 
@@ -54,7 +54,7 @@ const initialState = {
 };
 
 const ReservationSlice = createSlice({
-  name: "reserve",
+  name: 'reserve',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

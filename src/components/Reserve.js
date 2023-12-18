@@ -7,7 +7,7 @@ import './componentsCSS/reserve.css';
 
 const Reservation = () => {
   const doctors = useSelector((state) => state.doctors.doctors);
-  const user = localStorage.getItem('username');
+  const user = localStorage.getItem('name');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -84,6 +84,7 @@ const Reservation = () => {
           type="number"
           name="time"
           value={reserve.time}
+          max="60"
           onChange={handleInputChange}
           placeholder="Time Duration in Minutes"
         />
